@@ -10,9 +10,8 @@ window.onload = function () {
   startBtn.addEventListener("click", function () {
     loader.style.display = "none";
     main.style.display = "block";
-
     if (music) {
-      music.play().catch(function(){});
+        music.play().catch(function(){});
     }
   });
 
