@@ -1,91 +1,148 @@
-     window.onload = function () {
+window.onload = function () {
 
-    const loader = document.getElementById("loader");
-    const main = document.getElementById("main");
-    const startBtn = document.getElementById("startBtn");
-    const music = document.getElementById("music");
+
+    /* =========================
+       EXISTING ELEMENTS
+    ========================= */
+
+    const loader =
+        document.getElementById("loader");
+
+    const main =
+        document.getElementById("main");
+
+    const startBtn =
+        document.getElementById("startBtn");
+
+    const music =
+        document.getElementById("music");
+
+
+
+    /* MAIN HIDDEN INITIALLY */
 
     main.style.display = "none";
 
 
-    /* OPEN SURPRISE */
 
-    startBtn.addEventListener("click", function () {
+    /* =========================
+       OPEN SURPRISE
+    ========================= */
 
-        loader.style.display = "none";
-        main.style.display = "block";
+    startBtn.addEventListener(
+        "click",
+        function () {
 
-        if (music) {
+            loader.style.display = "none";
 
-            music.play().catch(function () {});
+            main.style.display = "block";
+
+
+            /* MUSIC */
+
+            if (music) {
+
+                music.play()
+                .catch(function () {});
+
+            }
 
         }
+    );
 
-    });
 
 
     /* =========================
-       SWIPE BOXES
+       SWIPE BOX SYSTEM
     ========================= */
 
-    const boxes = document.querySelectorAll(".swipe-box");
+    const boxes =
+        document.querySelectorAll(".swipe-box");
+
 
 
     boxes.forEach(function (box) {
 
+
         let startX = 0;
+
         let startY = 0;
 
 
-        box.addEventListener("touchstart", function (event) {
 
-            startX = event.touches[0].clientX;
-            startY = event.touches[0].clientY;
+        /* FINGER TOUCH START */
 
-        }, { passive: true });
+        box.addEventListener(
+            "touchstart",
+            function (event) {
+
+                startX =
+                    event.touches[0].clientX;
+
+                startY =
+                    event.touches[0].clientY;
+
+            },
+            { passive:true }
+        );
 
 
-        box.addEventListener("touchend", function (event) {
 
-            const endX = event.changedTouches[0].clientX;
-            const endY = event.changedTouches[0].clientY;
+        /* FINGER RELEASE */
 
-            const differenceX = endX - startX;
-            const differenceY = endY - startY;
+        box.addEventListener(
+            "touchend",
+            function (event) {
 
 
-            /*
-             * Sirf horizontal swipe ko detect karo.
-             * Isse normal page scrolling disturb nahi hogi.
-             */
+                const endX =
+                    event.changedTouches[0].clientX;
 
-            if (
-                Math.abs(differenceX) > 60 &&
-                Math.abs(differenceX) > Math.abs(differenceY)
-            ) {
+                const endY =
+                    event.changedTouches[0].clientY;
+
+
+
+                const differenceX =
+                    endX - startX;
+
+                const differenceY =
+                    endY - startY;
+
+
 
                 /*
-                 * Abhi har box me ek hi item hai.
-                 * Swipe hone par visual feedback milega.
+                 * Sirf horizontal swipe
+                 * ko detect karna hai.
+                 *
+                 * Isliye normal
+                 * up/down page scrolling
+                 * disturb nahi hogi.
                  */
 
-                const content = box.querySelector(".swipe-content");
+                if (
 
-                content.style.transform = "translateX(" +
-                    (differenceX > 0 ? "10px" : "-10px") +
-                    ")";
+                    Math.abs(differenceX) > 50 &&
+
+                    Math.abs(differenceX) >
+                    Math.abs(differenceY)
+
+                ) {
 
 
-                setTimeout(function () {
+                    /* PHOTO / VIDEO SHOW */
 
-                    content.style.transform = "translateX(0)";
+                    box.classList.add(
+                        "revealed"
+                    );
 
-                }, 150);
 
-            }
+                }
 
-        }, { passive: true });
+            },
+            { passive:true }
+        );
 
     });
 
-};       
+};
