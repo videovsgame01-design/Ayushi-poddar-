@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Happy Birthday Ayushi ❤️</title>
 
 <link rel="stylesheet" href="style.css">
@@ -15,69 +16,144 @@
 
 <div id="loader">
 
-<h1>🎁 A Special Surprise 🎁</h1>
+    <h1>🎁 A Special Surprise 🎁</h1>
 
-<h2>For</h2>
+    <h2>For</h2>
 
-<h1>Ayushi Poddar ❤️</h1>
+    <h1>Ayushi Poddar ❤️</h1>
 
-<button id="startBtn">
-Open Surprise 🎉
-</button>
+    <button id="startBtn">
+        Open Surprise 🎉
+    </button>
 
 </div>
+
 
 <div id="main" style="display:none;">
 
-<h1 class="title">
-🎂 Happy Birthday 🎂
-</h1>
+    <h1 class="title">
+        🎂 Happy Birthday 🎂
+    </h1>
 
-<h2 class="name">
-AYUSHI PODDAR
-</h2>
+    <h2 class="name">
+        AYUSHI PODDAR
+    </h2>
 
-<img src="IMG-20260308-WA0001.jpg" class="cake">
-  
-<img src="photo 1.png" class="cake">
 
-<img src="photo 2.png" class="cake">
-  
-<img src="photo 3.jpg" class="cake">
-<img src="photo 4.jpg" class="cake">
-<video controls width="100%" loop>
+    <!-- PHOTO / VIDEO SLIDER -->
 
-<source src="VN20260905_111408.mp4" type="video/mp4">
-</video>  
-<p class="msg">
+    <div class="slider">
 
-Dear Ayushi ❤️<br><br>
+        <div class="slider-content">
 
-May your birthday be filled with happiness, love, joy, success, beautiful memories and endless smiles.<br><br>
+            <img src="IMG-20260308-WA0001.jpg" class="slide active">
 
-Stay Happy 😊<br>
-Stay Blessed 🌸<br><br>
+            <img src="photo 1.png" class="slide">
 
-Happy Birthday 🎂
-</p><a href="gift.html">
-<button id="giftBtn">🎁 Open Gift 🎁</button>
-</a>
-<a href="https://wa.me/919288056524?text=Hi%20Ayush%20❤️%20I%20saw%20your%20birthday%20surprise." target="_blank">
-<button id="giftBtn">💬 Reply to Ayush ❤️</button>
-</a>
-<h2>
-🌹Made With ❤️
-<br><br>
-only
-<br>
-for you ♥️🌹
-</h2>
+            <img src="photo 2.png" class="slide">
+
+            <img src="photo 3.jpg" class="slide">
+
+            <img src="photo 4.jpg" class="slide">
+
+            <video class="slide" controls loop>
+                <source src="VN20260905_111408.mp4" type="video/mp4">
+            </video>
+
+        </div>
+
+
+        <!-- NUMBER NAVIGATION -->
+
+        <div class="slide-nav">
+
+            <button class="slide-number active" data-slide="0">
+                1
+            </button>
+
+            <span>→</span>
+
+            <button class="slide-number" data-slide="1">
+                2
+            </button>
+
+            <span>→</span>
+
+            <button class="slide-number" data-slide="2">
+                3
+            </button>
+
+            <span>→</span>
+
+            <button class="slide-number" data-slide="3">
+                4
+            </button>
+
+            <span>→</span>
+
+            <button class="slide-number" data-slide="4">
+                5
+            </button>
+
+            <span>→</span>
+
+            <button class="slide-number" data-slide="5">
+                6 🎬
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <p class="msg">
+
+        Dear Ayushi ❤️<br><br>
+
+        May your birthday be filled with happiness, love, joy,
+        success, beautiful memories and endless smiles.<br><br>
+
+        Stay Happy 😊<br>
+        Stay Blessed 🌸<br><br>
+
+        Happy Birthday 🎂
+
+    </p>
+
+
+    <a href="gift.html">
+        <button id="giftBtn">
+            🎁 Open Gift 🎁
+        </button>
+    </a>
+
+
+    <a href="https://wa.me/919288056524?text=Hi%20Ayush%20❤️%20I%20saw%20your%20birthday%20surprise." target="_blank">
+
+        <button id="replyBtn">
+            💬 Reply to Ayush ❤️
+        </button>
+
+    </a>
+
+
+    <h2 class="made">
+        🌹Made With ❤️
+        <br><br>
+        only
+        <br>
+        for you ♥️🌹
+    </h2>
 
 </div>
-  
+
+
 <audio id="music" loop>
+
     <source src="songe .mp3" type="audio/mpeg">
+
 </audio>
+
 
 <script src="script.js"></script>
 
