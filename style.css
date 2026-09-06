@@ -1,66 +1,122 @@
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
+
 
 body{
-background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fad0c4);
-min-height:100vh;
-overflow-x:hidden;
-text-align:center;
-color:#fff;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff9a9e,
+        #fad0c4,
+        #fad0c4
+    );
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    text-align:center;
+
+    color:#fff;
 }
+
+
+
+/* =========================
+   LOADER
+========================= */
 
 #loader{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
+
+    height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
 }
+
 
 #loader h1{
-font-size:38px;
-margin:10px;
+
+    font-size:38px;
+
+    margin:10px;
 }
+
 
 #loader h2{
-font-size:24px;
-margin:10px;
+
+    font-size:24px;
+
+    margin:10px;
 }
+
 
 #startBtn{
-padding:15px 35px;
-font-size:20px;
-border:none;
-border-radius:30px;
-background:#ff4081;
-color:white;
-cursor:pointer;
-margin-top:25px;
-transition:.3s;
+
+    padding:15px 35px;
+
+    font-size:20px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:#ff4081;
+
+    color:white;
+
+    cursor:pointer;
+
+    margin-top:25px;
+
+    transition:.3s;
 }
+
 
 #startBtn:hover{
-transform:scale(1.05);
+
+    transform:scale(1.05);
 }
+
+
+
+/* =========================
+   MAIN
+========================= */
 
 #main{
-padding:20px;
+
+    padding:20px;
 }
+
 
 .title{
-font-size:42px;
-margin-top:20px;
+
+    font-size:42px;
+
+    margin-top:20px;
 }
 
+
 .name{
-font-size:32px;
-margin:20px 0;
-color:yellow;
+
+    font-size:32px;
+
+    margin:20px 0;
+
+    color:yellow;
 }
+
 
 
 /* =========================
@@ -68,193 +124,272 @@ color:yellow;
 ========================= */
 
 .swipe-box{
-width:100%;
-max-width:420px;
-margin:25px auto;
 
-background:rgba(255,255,255,0.18);
+    width:100%;
 
-border:2px solid rgba(255,255,255,0.45);
+    max-width:420px;
 
-border-radius:25px;
+    margin:25px auto;
 
-padding:15px;
+    padding:15px;
 
-box-shadow:0 0 20px rgba(0,0,0,0.25);
+    background:
+    rgba(255,255,255,0.18);
 
-overflow:hidden;
+    border:
+    2px solid
+    rgba(255,255,255,0.45);
 
-touch-action:pan-y;
+    border-radius:25px;
+
+    box-shadow:
+    0 0 20px
+    rgba(0,0,0,0.25);
+
+    overflow:hidden;
 }
 
 
-/* PHOTO AREA */
 
-.swipe-content{
+/* =========================
+   SWIPE AREA
+========================= */
 
-width:100%;
-min-height:280px;
+.swipe-area{
 
-display:flex;
-justify-content:center;
-align-items:center;
+    width:100%;
 
-position:relative;
+    min-height:280px;
 
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+    touch-action:pan-y;
+
+    user-select:none;
 }
 
 
-/* PHOTO */
 
-.swipe-photo{
-
-width:100%;
-max-width:380px;
-
-max-height:500px;
-
-object-fit:contain;
-
-border-radius:18px;
-
-display:block;
-
-box-shadow:0 0 15px rgba(0,0,0,0.25);
-
-}
-
-
-/* VIDEO */
-
-.swipe-video{
-
-width:100%;
-max-width:390px;
-
-border-radius:18px;
-
-display:block;
-
-background:#000;
-
-}
-
-
-/* SWIPE TEXT */
+/* =========================
+   SWIPE TEXT
+========================= */
 
 .swipe-hint{
 
-margin-top:12px;
+    font-size:24px;
 
-font-size:17px;
+    font-weight:500;
 
-font-weight:500;
+    animation:
+    swipeAnimation
+    1.5s
+    infinite;
+}
 
-opacity:.9;
 
-animation:swipeHint 1.5s infinite;
+@keyframes swipeAnimation{
+
+    0%{
+
+        transform:
+        translateX(0);
+
+    }
+
+    50%{
+
+        transform:
+        translateX(15px);
+
+    }
+
+    100%{
+
+        transform:
+        translateX(0);
+
+    }
 
 }
 
 
-/* SWIPE ANIMATION */
 
-@keyframes swipeHint{
+/* =========================
+   HIDDEN PHOTO / VIDEO
+========================= */
 
-0%{
-transform:translateX(0);
+.hidden-content{
+
+    display:none;
+
+    width:100%;
+
+    max-width:380px;
+
+    max-height:500px;
+
+    object-fit:contain;
+
+    border-radius:18px;
+
+    box-shadow:
+    0 0 15px
+    rgba(0,0,0,0.25);
 }
 
-50%{
-transform:translateX(8px);
+
+
+/* =========================
+   AFTER SWIPE
+========================= */
+
+.swipe-box.revealed
+.hidden-content{
+
+    display:block;
 }
 
-100%{
-transform:translateX(0);
+
+.swipe-box.revealed
+.swipe-hint{
+
+    display:none;
 }
 
+
+
+/* =========================
+   VIDEO
+========================= */
+
+video.hidden-content{
+
+    width:100%;
+
+    background:#000;
 }
 
 
-/* MESSAGE */
+
+/* =========================
+   MESSAGE
+========================= */
 
 .msg{
-font-size:20px;
 
-max-width:700px;
+    font-size:20px;
 
-margin:20px auto;
+    max-width:700px;
 
-line-height:1.8;
+    margin:20px auto;
 
-padding:0 20px;
+    line-height:1.8;
+
+    padding:0 20px;
 }
 
 
-/* BUTTONS */
+
+/* =========================
+   BUTTONS
+========================= */
 
 #giftBtn,
 #replyBtn{
 
-padding:15px 35px;
+    padding:15px 35px;
 
-font-size:20px;
+    font-size:20px;
 
-border:none;
+    border:none;
 
-border-radius:30px;
+    border-radius:30px;
 
-background:#ff4081;
+    background:#ff4081;
 
-color:#fff;
+    color:#fff;
 
-cursor:pointer;
+    cursor:pointer;
 
-margin:15px 5px;
+    margin:15px 5px;
 
-transition:.3s;
+    transition:.3s;
 }
+
 
 #giftBtn:hover,
 #replyBtn:hover{
 
-transform:scale(1.05);
+    transform:scale(1.05);
 
-background:#e91e63;
-
+    background:#e91e63;
 }
+
 
 .made{
-margin-top:20px;
+
+    margin-top:20px;
 }
 
 
-/* MOBILE */
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:600px){
 
-.title{
-font-size:32px;
-}
+    #loader h1{
 
-.name{
-font-size:26px;
-}
+        font-size:30px;
+    }
 
-.msg{
-font-size:18px;
-}
 
-.swipe-box{
-max-width:95%;
-}
+    #loader h2{
 
-.swipe-content{
-min-height:240px;
-}
+        font-size:21px;
+    }
 
-.swipe-photo{
-max-width:100%;
-}
+
+    .title{
+
+        font-size:32px;
+    }
+
+
+    .name{
+
+        font-size:26px;
+    }
+
+
+    .msg{
+
+        font-size:18px;
+    }
+
+
+    .swipe-box{
+
+        max-width:95%;
+    }
+
+
+    .swipe-area{
+
+        min-height:240px;
+    }
+
+
+    .hidden-content{
+
+        max-width:100%;
+    }
 
 }
