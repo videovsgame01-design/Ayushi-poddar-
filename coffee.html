@@ -7,6 +7,11 @@
 <title>Coffee Plan ☕</title>
 
 <style>
+
+*{
+    box-sizing:border-box;
+}
+
 body{
     margin:0;
     padding:20px;
@@ -38,6 +43,42 @@ p{
     line-height:1.6;
 }
 
+/* YES / NO buttons */
+
+.choice-area{
+    position:relative;
+    height:150px;
+    margin-top:20px;
+}
+
+.choice-btn{
+    padding:13px 28px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    color:white;
+    cursor:pointer;
+    position:absolute;
+    top:50px;
+}
+
+#yesBtn{
+    background:#25D366;
+    left:15%;
+}
+
+#noBtn{
+    background:#ff4081;
+    right:15%;
+    transition:0.2s;
+}
+
+/* Date page */
+
+#datePage{
+    display:none;
+}
+
 input{
     width:90%;
     padding:14px;
@@ -47,7 +88,7 @@ input{
     margin-top:10px;
 }
 
-button{
+.confirm-btn{
     padding:13px 24px;
     font-size:18px;
     border:none;
@@ -61,6 +102,12 @@ button{
 button:hover{
     opacity:0.9;
 }
+
+.small{
+    font-size:14px;
+    margin-top:15px;
+}
+
 </style>
 </head>
 
@@ -68,26 +115,121 @@ button:hover{
 
 <div class="box">
 
-    <h1>☕ Coffee Plan ☕</h1>
+    <!-- QUESTION PAGE -->
 
-    <p>
-        Ek date choose karo 😊<br>
-        Coffee plan ke liye 📅
-        tum free ho tab  🥺
-        
-    </p>
+    <div id="questionPage">
 
-    <input type="date" id="coffeeDate">
+        <h1>☕ Coffee Plan? ☕</h1>
 
-    <br>
+        <p>
+            Ek important question hai... 🥺❤️
+            <br><br>
+            Mere saath coffee pe chalogi? ☕😊
+        </p>
 
-    <button onclick="sendWhatsApp()">
-        💚 Confirm Date 💚
-     </button>
+        <div class="choice-area">
+
+            <button
+                id="yesBtn"
+                class="choice-btn"
+                onclick="showDatePage()">
+                ❤️ YES
+            </button>
+
+            <button
+                id="noBtn"
+                class="choice-btn"
+                onclick="moveNoButton()">
+                😜 NO
+            </button>
+
+        </div>
+
+        <p class="small">
+            Hint: NO button thoda shy hai 😂
+        </p>
+
+    </div>
+
+
+    <!-- DATE PAGE -->
+
+    <div id="datePage">
+
+        <h1>☕ Coffee Plan ☕</h1>
+
+        <p>
+            Yayyy! 😄❤️
+            <br><br>
+            Ek date choose karo 😊<br>
+            Coffee plan ke liye 📅
+        </p>
+
+        <input type="date" id="coffeeDate">
+
+        <br>
+
+        <button
+            class="confirm-btn"
+            onclick="sendWhatsApp()">
+            💚 Confirm Date 💚
+        </button>
+
+    </div>
 
 </div>
 
+
 <script>
+
+/* --------------------------------
+   BACK HANDLING
+-------------------------------- */
+
+history.replaceState(null, "", location.href);
+
+window.addEventListener("popstate", function () {
+    history.pushState(null, "", location.href);
+});
+
+
+/* --------------------------------
+   NO BUTTON MOVEMENT
+-------------------------------- */
+
+function moveNoButton(){
+
+    const button = document.getElementById("noBtn");
+    const area = document.querySelector(".choice-area");
+
+    const maxX = area.clientWidth - button.offsetWidth;
+    const maxY = area.clientHeight - button.offsetHeight;
+
+    const randomX = Math.floor(Math.random() * Math.max(maxX, 1));
+    const randomY = Math.floor(Math.random() * Math.max(maxY, 1));
+
+    button.style.left = randomX + "px";
+    button.style.top = randomY + "px";
+    button.style.right = "auto";
+}
+
+
+/* --------------------------------
+   YES BUTTON
+-------------------------------- */
+
+function showDatePage(){
+
+    document.getElementById("questionPage").style.display = "none";
+
+    document.getElementById("datePage").style.display = "block";
+
+}
+
+
+/* --------------------------------
+   WHATSAPP DATE
+-------------------------------- */
 
 function sendWhatsApp(){
 
@@ -98,18 +240,22 @@ function sendWhatsApp(){
         return;
     }
 
-    const formattedDate = new Date(date + "T00:00:00").toLocaleDateString("en-IN", {
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-    });
+    const formattedDate =
+        new Date(date + "T00:00:00").toLocaleDateString("en-IN", {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        });
 
     const message =
         `Hi Ayush ❤️\n\nCoffee plan ke liye maine ${formattedDate} choose kiya hai. ☕😊`;
 
-    // Yahan apna wahi WhatsApp number paste karo
-    // Country code ke saath, + ya spaces ke bina
-    const phone = "9288056524";
+    /*
+      Yahan apna wahi WhatsApp number rakho
+      jo tumhari existing coffee.html mein tha.
+    */
+
+    const phone = "919288056524";
 
     window.open(
         `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
