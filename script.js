@@ -2,8 +2,20 @@ window.onload = function () {
 
 
     /* =========================
-       EXISTING ELEMENTS
+       PASSWORD SYSTEM
     ========================= */
+
+    const passwordScreen =
+        document.getElementById("passwordScreen");
+
+    const passwordInput =
+        document.getElementById("passwordInput");
+
+    const passwordBtn =
+        document.getElementById("passwordBtn");
+
+    const passwordError =
+        document.getElementById("passwordError");
 
     const loader =
         document.getElementById("loader");
@@ -18,11 +30,52 @@ window.onload = function () {
         document.getElementById("music");
 
 
-
     /* MAIN HIDDEN INITIALLY */
 
     main.style.display = "none";
 
+
+    /* =========================
+       PASSWORD CHECK
+    ========================= */
+
+    passwordBtn.addEventListener(
+        "click",
+        function () {
+
+            if (passwordInput.value === "Ayushi@2026") {
+
+                passwordScreen.style.display = "none";
+
+                loader.style.display = "block";
+
+            } else {
+
+                passwordError.textContent =
+                    "❌ Wrong Password ❤️";
+
+                passwordInput.value = "";
+
+            }
+
+        }
+    );
+
+
+    /* ENTER KEY ALSO WORKS */
+
+    passwordInput.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key === "Enter") {
+
+                passwordBtn.click();
+
+            }
+
+        }
+    );
 
 
     /* =========================
@@ -51,7 +104,6 @@ window.onload = function () {
     );
 
 
-
     /* =========================
        SWIPE BOX SYSTEM
     ========================= */
@@ -60,14 +112,12 @@ window.onload = function () {
         document.querySelectorAll(".swipe-box");
 
 
-
     boxes.forEach(function (box) {
 
 
         let startX = 0;
 
         let startY = 0;
-
 
 
         /* FINGER TOUCH START */
@@ -87,7 +137,6 @@ window.onload = function () {
         );
 
 
-
         /* FINGER RELEASE */
 
         box.addEventListener(
@@ -102,7 +151,6 @@ window.onload = function () {
                     event.changedTouches[0].clientY;
 
 
-
                 const differenceX =
                     endX - startX;
 
@@ -110,13 +158,11 @@ window.onload = function () {
                     endY - startY;
 
 
-
                 /*
                  * Sirf horizontal swipe
                  * ko detect karna hai.
                  *
-                 * Isliye normal
-                 * up/down page scrolling
+                 * Normal page scrolling
                  * disturb nahi hogi.
                  */
 
@@ -135,7 +181,6 @@ window.onload = function () {
                     box.classList.add(
                         "revealed"
                     );
-
 
                 }
 
