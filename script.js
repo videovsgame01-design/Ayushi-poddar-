@@ -43,7 +43,7 @@ window.onload = function () {
         "click",
         function () {
 
-            if (passwordInput.value === "Ayushi@2026") {
+            if (passwordInput.value === "5121314") {
 
                 passwordScreen.style.display = "none";
 
