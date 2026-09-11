@@ -1,67 +1,96 @@
-window.addEventListener("load", function () {
+window.addEventListener("DOMContentLoaded", function () {
 
-    /* =========================
-       ELEMENTS
-    ========================= */
+    /* =========================================
+       GET ELEMENTS
+    ========================================= */
 
-    const passwordScreen =
-        document.getElementById("passwordScreen");
+    const passwordScreen = document.getElementById("passwordScreen");
+    const passwordInput = document.getElementById("passwordInput");
+    const passwordBtn = document.getElementById("passwordBtn");
+    const passwordError = document.getElementById("passwordError");
 
-    const passwordInput =
-        document.getElementById("passwordInput");
+    const birthdayAnimation = document.getElementById("birthdayAnimation");
+    const arrow = document.getElementById("arrow");
+    const targetHeart = document.getElementById("targetHeart");
 
-    const passwordBtn =
-        document.getElementById("passwordBtn");
+    const birthdayTitle = document.getElementById("birthdayTitle");
+    const tree = document.getElementById("tree");
+    const continueBtn = document.getElementById("continueBtn");
 
-    const passwordError =
-        document.getElementById("passwordError");
-
-    const loader =
-        document.getElementById("loader");
-
-    const main =
-        document.getElementById("main");
-
-    const startBtn =
-        document.getElementById("startBtn");
-
-    const music =
-        document.getElementById("music");
-
-    const birthdayAnimation =
-        document.getElementById("birthdayAnimation");
+    const loader = document.getElementById("loader");
+    const startBtn = document.getElementById("startBtn");
+    const main = document.getElementById("main");
+    const music = document.getElementById("music");
 
 
-    /* =========================
-       INITIAL STATE
-    ========================= */
+    /* =========================================
+       CHECK IMPORTANT ELEMENTS
+    ========================================= */
 
-    loader.style.display = "none";
-    main.style.display = "none";
-    birthdayAnimation.style.display = "none";
+    if (!passwordScreen || !passwordInput || !passwordBtn) {
+
+        console.error(
+            "Password elements missing from index.html"
+        );
+
+        return;
+    }
 
 
-    /* =========================
-       PASSWORD
-    ========================= */
+    /* =========================================
+       INITIAL SCREEN
+    ========================================= */
 
-    function unlockWebsite(){
+    passwordScreen.style.display = "flex";
 
-        if(passwordInput.value === "5121314"){
+    if (birthdayAnimation) {
+        birthdayAnimation.style.display = "none";
+    }
+
+    if (loader) {
+        loader.style.display = "none";
+    }
+
+    if (main) {
+        main.style.display = "none";
+    }
+
+
+    /* =========================================
+       PASSWORD SYSTEM
+    ========================================= */
+
+    function unlockWebsite() {
+
+        const enteredPassword =
+            passwordInput.value.trim();
+
+
+        /* CORRECT PASSWORD */
+
+        if (enteredPassword === "5121314") {
 
             passwordError.textContent = "";
-
-            /* Hide password */
 
             passwordScreen.style.display = "none";
 
 
-            /* Start birthday animation directly */
+            /* Start animation */
 
-            birthdayAnimation.style.display = "block";
+            if (birthdayAnimation) {
+
+                birthdayAnimation.style.display =
+                    "block";
+
+                startBirthdayAnimation();
+
+            }
 
         }
-        else{
+
+        /* WRONG PASSWORD */
+
+        else {
 
             passwordError.textContent =
                 "❌ Wrong Password ❤️";
@@ -83,9 +112,11 @@ window.addEventListener("load", function () {
 
     passwordInput.addEventListener(
         "keydown",
-        function(event){
+        function (event) {
 
-            if(event.key === "Enter"){
+            if (event.key === "Enter") {
+
+                event.preventDefault();
 
                 unlockWebsite();
 
@@ -95,46 +126,133 @@ window.addEventListener("load", function () {
     );
 
 
-    /* =========================
-       BIRTHDAY ANIMATION
-    ========================= */
+    /* =========================================
+       START BIRTHDAY ANIMATION
+    ========================================= */
 
-    const arrow =
-        document.getElementById("arrow");
+    function startBirthdayAnimation() {
 
-    const target =
-        document.getElementById("targetHeart");
+        if (birthdayTitle) {
+            birthdayTitle.classList.remove("show");
+        }
 
-    const continueBtn =
-        document.getElementById("continueBtn");
+        if (tree) {
+            tree.classList.remove("grow");
+        }
 
-    const birthdayTitle =
-        document.getElementById("birthdayTitle");
+        if (continueBtn) {
+            continueBtn.classList.remove("show");
+        }
 
-    const tree =
-        document.getElementById("tree");
+        if (targetHeart) {
+            targetHeart.classList.remove("hit-heart");
+            targetHeart.style.opacity = "1";
+        }
 
-    const aimHelp =
-        document.querySelector(".aim-help");
+        if (arrow) {
+
+            arrow.style.opacity = "1";
+
+            arrow.style.transform =
+                "rotate(-25deg)";
+
+        }
+
+    }
 
 
-    let dragging = false;
+    /* =========================================
+       ARROW DRAG
+    ========================================= */
+
+    if (arrow && targetHeart) {
+
+        let dragging = false;
 
 
-    /* =========================
-       ARROW AIM
-    ========================= */
+        arrow.addEventListener(
+            "pointerdown",
+            function (event) {
 
-    function aimArrow(x, y){
+                dragging = true;
+
+                arrow.setPointerCapture(
+                    event.pointerId
+                );
+
+                arrow.style.cursor = "grabbing";
+
+            }
+        );
+
+
+        arrow.addEventListener(
+            "pointermove",
+            function (event) {
+
+                if (!dragging) return;
+
+                rotateArrow(
+                    event.clientX,
+                    event.clientY
+                );
+
+            }
+        );
+
+
+        arrow.addEventListener(
+            "pointerup",
+            function (event) {
+
+                if (!dragging) return;
+
+                dragging = false;
+
+                arrow.style.cursor = "grab";
+
+                checkArrowHit();
+
+            }
+        );
+
+
+        arrow.addEventListener(
+            "pointercancel",
+            function () {
+
+                dragging = false;
+
+                arrow.style.cursor = "grab";
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       ROTATE ARROW
+    ========================================= */
+
+    function rotateArrow(x, y) {
 
         const rect =
             arrow.getBoundingClientRect();
+
+
+        /*
+          Arrow ke starting point ko use kar rahe hain.
+          Bounding-box ke right edge ko nahi.
+        */
 
         const originX =
             rect.left + 10;
 
         const originY =
-            rect.top + rect.height / 2;
+            rect.top +
+            rect.height / 2;
+
 
         const dx =
             x - originX;
@@ -142,17 +260,22 @@ window.addEventListener("load", function () {
         const dy =
             y - originY;
 
+
         let angle =
-            Math.atan2(dy, dx) * 180 / Math.PI;
+            Math.atan2(dy, dx) *
+            180 /
+            Math.PI;
 
 
-        /* Natural aiming range */
+        /*
+          Sirf upar ki taraf aim
+        */
 
-        if(angle > 15){
-            angle = 15;
+        if (angle > 10) {
+            angle = 10;
         }
 
-        if(angle < -75){
+        if (angle < -75) {
             angle = -75;
         }
 
@@ -163,74 +286,26 @@ window.addEventListener("load", function () {
     }
 
 
-    arrow.addEventListener(
-        "pointerdown",
-        function(event){
+    /* =========================================
+       CHECK ARROW + HEART
+    ========================================= */
 
-            dragging = true;
-
-            arrow.setPointerCapture(
-                event.pointerId
-            );
-
-        }
-    );
-
-
-    arrow.addEventListener(
-        "pointermove",
-        function(event){
-
-            if(!dragging) return;
-
-            aimArrow(
-                event.clientX,
-                event.clientY
-            );
-
-        }
-    );
-
-
-    arrow.addEventListener(
-        "pointerup",
-        function(){
-
-            if(!dragging) return;
-
-            dragging = false;
-
-            checkHit();
-
-        }
-    );
-
-
-    arrow.addEventListener(
-        "pointercancel",
-        function(){
-
-            dragging = false;
-
-        }
-    );
-
-
-    /* =========================
-       CHECK HIT
-    ========================= */
-
-    function checkHit(){
+    function checkArrowHit() {
 
         const arrowRect =
             arrow.getBoundingClientRect();
 
         const heartRect =
-            target.getBoundingClientRect();
+            targetHeart.getBoundingClientRect();
 
+
+        /*
+          Arrow ka approximate tip.
+        */
 
         const tipX =
-            arrowRect.right;
+            arrowRect.left +
+            arrowRect.width * 0.92;
 
         const tipY =
             arrowRect.top +
@@ -253,7 +328,11 @@ window.addEventListener("load", function () {
             );
 
 
-        if(distance < 120){
+        /*
+          Heart ke paas hua to hit.
+        */
+
+        if (distance < 150) {
 
             hitHeart();
 
@@ -262,59 +341,91 @@ window.addEventListener("load", function () {
     }
 
 
-    /* =========================
+    /* =========================================
        HEART HIT
-    ========================= */
+    ========================================= */
 
-    function hitHeart(){
+    function hitHeart() {
 
-        if(
-            target.classList.contains("hit-heart")
-        ){
+        if (
+            targetHeart.classList.contains(
+                "hit-heart"
+            )
+        ) {
             return;
         }
 
 
-        target.classList.add("hit-heart");
+        targetHeart.classList.add(
+            "hit-heart"
+        );
+
 
         arrow.style.opacity = "0";
 
-        if(aimHelp){
-            aimHelp.style.opacity = "0";
+
+        const help =
+            document.querySelector(".aim-help");
+
+
+        if (help) {
+            help.style.opacity = "0";
         }
 
 
         setTimeout(
             showBirthday,
-            900
+            850
         );
 
     }
 
 
-    /* =========================
-       HAPPY BIRTHDAY
-    ========================= */
+    /* =========================================
+       SHOW HAPPY BIRTHDAY
+    ========================================= */
 
-    function showBirthday(){
+    function showBirthday() {
 
-        birthdayTitle.classList.add("show");
+        if (birthdayTitle) {
 
+            birthdayTitle.classList.add(
+                "show"
+            );
+
+        }
+
+
+        /* Tree grows */
 
         setTimeout(
-            function(){
+            function () {
 
-                tree.classList.add("grow");
+                if (tree) {
+
+                    tree.classList.add(
+                        "grow"
+                    );
+
+                }
 
             },
             1200
         );
 
 
-        setTimeout(
-            function(){
+        /* Continue button */
 
-                continueBtn.classList.add("show");
+        setTimeout(
+            function () {
+
+                if (continueBtn) {
+
+                    continueBtn.classList.add(
+                        "show"
+                    );
+
+                }
 
             },
             4000
@@ -323,60 +434,88 @@ window.addEventListener("load", function () {
     }
 
 
-    /* =========================
+    /* =========================================
        CONTINUE
-    ========================= */
+    ========================================= */
 
-    continueBtn.addEventListener(
-        "click",
-        function(){
+    if (continueBtn) {
 
-            birthdayAnimation.style.display =
-                "none";
+        continueBtn.addEventListener(
+            "click",
+            function () {
 
-            loader.style.display =
-                "flex";
+                if (birthdayAnimation) {
 
-        }
-    );
+                    birthdayAnimation.style.display =
+                        "none";
 
-
-    /* =========================
-       OPEN SURPRISE
-    ========================= */
-
-    startBtn.addEventListener(
-        "click",
-        function(){
-
-            loader.style.display =
-                "none";
-
-            main.style.display =
-                "block";
+                }
 
 
-            if(music){
+                if (loader) {
 
-                music.play()
-                    .catch(function(){});
+                    loader.style.display =
+                        "flex";
+
+                }
 
             }
+        );
 
-        }
-    );
+    }
 
 
-    /* =========================
-       SWIPE BOX
-    ========================= */
+    /* =========================================
+       OPEN SURPRISE
+    ========================================= */
+
+    if (startBtn) {
+
+        startBtn.addEventListener(
+            "click",
+            function () {
+
+                if (loader) {
+
+                    loader.style.display =
+                        "none";
+
+                }
+
+
+                if (main) {
+
+                    main.style.display =
+                        "block";
+
+                }
+
+
+                if (music) {
+
+                    music.play()
+                        .catch(function () {});
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       PHOTO / VIDEO SWIPE
+    ========================================= */
 
     const boxes =
-        document.querySelectorAll(".swipe-box");
+        document.querySelectorAll(
+            ".swipe-box"
+        );
 
 
     boxes.forEach(
-        function(box){
+        function (box) {
 
             let startX = 0;
             let startY = 0;
@@ -384,7 +523,15 @@ window.addEventListener("load", function () {
 
             box.addEventListener(
                 "touchstart",
-                function(event){
+                function (event) {
+
+                    if (
+                        !event.touches ||
+                        !event.touches[0]
+                    ) {
+                        return;
+                    }
+
 
                     startX =
                         event.touches[0].clientX;
@@ -393,13 +540,23 @@ window.addEventListener("load", function () {
                         event.touches[0].clientY;
 
                 },
-                {passive:true}
+                {
+                    passive: true
+                }
             );
 
 
             box.addEventListener(
                 "touchend",
-                function(event){
+                function (event) {
+
+                    if (
+                        !event.changedTouches ||
+                        !event.changedTouches[0]
+                    ) {
+                        return;
+                    }
+
 
                     const endX =
                         event.changedTouches[0].clientX;
@@ -415,11 +572,11 @@ window.addEventListener("load", function () {
                         endY - startY;
 
 
-                    if(
+                    if (
                         Math.abs(differenceX) > 50 &&
                         Math.abs(differenceX) >
                         Math.abs(differenceY)
-                    ){
+                    ) {
 
                         box.classList.add(
                             "revealed"
@@ -428,7 +585,9 @@ window.addEventListener("load", function () {
                     }
 
                 },
-                {passive:true}
+                {
+                    passive: true
+                }
             );
 
         }
