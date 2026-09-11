@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,9 +13,9 @@
 
 <style>
 
-/* =================================
+/* ================================
    BIRTHDAY ANIMATION
-================================= */
+================================ */
 
 #birthdayAnimation{
     display:none;
@@ -24,55 +23,114 @@
     inset:0;
     z-index:99999;
     overflow:hidden;
-    background:linear-gradient(135deg,#fff4ec,#ffe0df,#fff8ed);
-    color:#542737;
+    background:
+        radial-gradient(circle at 80% 20%,rgba(255,190,205,.35),transparent 30%),
+        linear-gradient(135deg,#fff8f0,#ffe9e5,#fff5ee);
+    color:#5b3440;
     text-align:center;
 }
 
-/* small wish text */
+
+/* WISH */
 
 .wish-text{
     position:absolute;
-    top:8%;
+    top:7%;
     left:0;
     right:0;
     font-family:Georgia,serif;
     font-style:italic;
-    font-size:20px;
-    opacity:.7;
+    font-size:19px;
+    color:#815d67;
+    opacity:.75;
 }
 
 
-/* TARGET HEART */
+/* ================================
+   GLOSSY HEART
+================================ */
 
 .target-heart{
     position:absolute;
-    top:16%;
-    left:50%;
+    top:14%;
+    right:15%;
+    width:92px;
+    height:82px;
+    z-index:15;
 
-    transform:translateX(-50%);
+    transform:rotate(-45deg);
 
-    font-size:72px;
+    background:linear-gradient(
+        135deg,
+        #ffb0c4 0%,
+        #ff5d87 35%,
+        #ed245b 75%,
+        #c8144b 100%
+    );
 
-    filter:drop-shadow(0 5px 10px rgba(0,0,0,.15));
+    border-radius:18px 0 18px 18px;
+
+    filter:
+        drop-shadow(0 8px 15px rgba(205,35,90,.28))
+        drop-shadow(0 0 15px rgba(255,90,140,.35));
 
     animation:heartFloat 2s ease-in-out infinite;
 }
 
-@keyframes heartFloat{
 
-    0%,100%{
-        transform:translateX(-50%) translateY(0);
-    }
+/* heart upper circles */
 
-    50%{
-        transform:translateX(-50%) translateY(-10px);
-    }
+.target-heart:before,
+.target-heart:after{
+    content:"";
+    position:absolute;
+    width:92px;
+    height:82px;
+    border-radius:50%;
+    background:inherit;
+}
 
+.target-heart:before{
+    top:-43px;
+    left:0;
+}
+
+.target-heart:after{
+    top:0;
+    left:43px;
 }
 
 
-/* AIM AREA */
+/* glossy shine */
+
+.target-heart .shine{
+    position:absolute;
+    width:23px;
+    height:11px;
+    border-radius:50%;
+    background:rgba(255,255,255,.75);
+    transform:rotate(45deg);
+    top:-7px;
+    left:26px;
+    z-index:5;
+}
+
+
+@keyframes heartFloat{
+
+    0%,100%{
+        transform:rotate(-45deg) translateY(0);
+    }
+
+    50%{
+        transform:rotate(-45deg) translateY(-9px);
+    }
+}
+
+
+/* ================================
+   AIM AREA
+================================ */
 
 .aim-area{
     position:absolute;
@@ -81,165 +139,201 @@
 }
 
 
-/* ARROW */
+/* ================================
+   ARROW
+================================ */
 
 .arrow{
     position:absolute;
+    left:25%;
+    bottom:25%;
 
-    left:50%;
-    bottom:24%;
+    width:155px;
+    height:5px;
 
-    width:150px;
-    height:8px;
-
-    background:#6d3e4d;
+    background:linear-gradient(
+        to right,
+        #4d2933,
+        #7b4050
+    );
 
     border-radius:10px;
 
-    transform:translateX(-50%) rotate(-90deg);
+    transform-origin:10px 50%;
+    transform:rotate(-25deg);
 
-    transform-origin:center;
+    z-index:20;
 
     cursor:grab;
-
     touch-action:none;
 
-    transition:transform .15s;
+    box-shadow:0 2px 5px rgba(0,0,0,.18);
 }
+
+
+/* arrow head */
 
 .arrow:after{
     content:"";
-
     position:absolute;
-
-    right:-18px;
-    top:-7px;
+    right:-20px;
+    top:-8px;
 
     width:0;
     height:0;
 
-    border-top:11px solid transparent;
-    border-bottom:11px solid transparent;
-    border-left:22px solid #6d3e4d;
+    border-top:10px solid transparent;
+    border-bottom:10px solid transparent;
+    border-left:23px solid #5b3040;
 }
+
+
+/* feathers */
 
 .arrow:before{
     content:"";
-
     position:absolute;
-
-    left:-18px;
+    left:0;
     top:-7px;
 
-    width:35px;
-    height:22px;
+    width:24px;
+    height:18px;
 
-    border-top:3px solid #9b596b;
-    border-bottom:3px solid #9b596b;
+    border-top:3px solid #b26b7d;
+    border-bottom:3px solid #b26b7d;
 
     border-radius:50%;
 }
 
 
-/* BOW */
+/* ================================
+   BOW
+================================ */
 
 .bow{
     position:absolute;
+    left:18%;
+    bottom:9%;
 
-    left:50%;
-    bottom:7%;
+    width:105px;
+    height:145px;
 
-    width:100px;
-    height:130px;
-
-    transform:translateX(-50%);
-
-    border-right:8px solid #70404c;
-
+    border-left:7px solid #633442;
     border-radius:50%;
+
+    transform:rotate(-18deg);
+
+    z-index:12;
 }
+
+
+.bow:after{
+    content:"";
+    position:absolute;
+    width:115px;
+    height:7px;
+    background:#633442;
+    border-radius:10px;
+
+    left:-10px;
+    top:50%;
+
+    transform:rotate(18deg);
+}
+
+
+/* bow string */
 
 .bow-string{
     position:absolute;
-
-    left:50%;
-
-    bottom:7%;
+    left:24%;
+    bottom:10%;
 
     width:2px;
-    height:130px;
+    height:135px;
 
     background:#70404c;
 
-    transform:translateX(-50%);
+    transform:rotate(-18deg);
+
+    z-index:13;
 }
 
 
-/* INSTRUCTION */
+/* ================================
+   HELP
+================================ */
 
 .aim-help{
     position:absolute;
-
-    bottom:32%;
-
     left:0;
     right:0;
+    bottom:20%;
 
-    font-size:16px;
+    font-size:15px;
+    color:#754e5a;
 
-    opacity:.75;
+    opacity:.7;
 
     animation:helpPulse 1.5s infinite;
 }
 
+
 @keyframes helpPulse{
 
     0%,100%{
-        opacity:.45;
+        opacity:.4;
     }
 
     50%{
         opacity:1;
     }
-
 }
 
 
-/* HIT EFFECT */
+/* ================================
+   HEART HIT
+================================ */
 
 .hit-heart{
     animation:heartHit .8s ease forwards !important;
 }
 
+
 @keyframes heartHit{
 
     0%{
-        transform:translateX(-50%) scale(1);
+        transform:rotate(-45deg) scale(1);
     }
 
-    50%{
-        transform:translateX(-50%) scale(1.5);
+    35%{
+        transform:rotate(-45deg) scale(1.3);
+    }
+
+    65%{
+        transform:rotate(-45deg) scale(.9);
     }
 
     100%{
-        transform:translateX(-50%) scale(0);
+        transform:rotate(-45deg) scale(0);
         opacity:0;
     }
-
 }
 
 
-/* HAPPY BIRTHDAY */
+/* ================================
+   HAPPY BIRTHDAY
+================================ */
 
 .birthday-title{
     position:absolute;
 
     left:50%;
-    top:25%;
-
-    transform:translateX(-50%) scale(.5);
+    top:27%;
 
     width:100%;
+
+    transform:translateX(-50%) scale(.5);
 
     opacity:0;
 
@@ -249,46 +343,52 @@
 
     transition:all 1.5s ease;
 
-    z-index:20;
+    z-index:25;
 }
+
 
 .birthday-title.show{
     opacity:1;
     transform:translateX(-50%) scale(1);
 }
 
+
 .birthday-title .small-title{
-    font-size:20px;
+    font-size:18px;
     font-style:italic;
     color:#79515c;
 }
 
+
 .birthday-title h1{
-    margin:8px 0;
-
-    font-size:clamp(42px,10vw,85px);
-
-    line-height:.95;
-}
-
-.birthday-title h2{
     margin:10px 0;
 
-    font-size:clamp(24px,6vw,48px);
+    font-size:clamp(44px,10vw,82px);
+
+    line-height:.92;
+}
+
+
+.birthday-title h2{
+    margin:12px 0;
+
+    font-size:clamp(25px,6vw,46px);
 
     font-weight:500;
 }
 
 
-/* TREE */
+/* ================================
+   TREE
+================================ */
 
 .tree{
     position:absolute;
 
-    left:72%;
+    right:8%;
     bottom:-10px;
 
-    width:180px;
+    width:190px;
     height:0;
 
     transition:height 2.5s ease;
@@ -296,12 +396,13 @@
     z-index:5;
 }
 
+
 .tree.grow{
-    height:70%;
+    height:58%;
 }
 
 
-/* TREE TRUNK */
+/* TRUNK */
 
 .trunk{
     position:absolute;
@@ -309,10 +410,10 @@
     bottom:0;
     left:50%;
 
-    width:24px;
+    width:25px;
     height:100%;
 
-    background:#653946;
+    background:#603844;
 
     border-radius:50% 50% 8px 8px;
 
@@ -325,9 +426,9 @@
 .branch{
     position:absolute;
 
-    height:14px;
+    height:13px;
 
-    background:#653946;
+    background:#603844;
 
     border-radius:20px;
 
@@ -338,40 +439,47 @@
     transition:opacity 1s;
 }
 
+
 .tree.grow .branch{
     opacity:1;
 }
 
+
 .branch1{
-    width:100px;
+    width:105px;
     left:50%;
     top:25%;
-    transform:rotate(-35deg);
+    transform:rotate(-38deg);
 }
+
 
 .branch2{
-    width:90px;
+    width:95px;
     left:50%;
-    top:35%;
-    transform:rotate(35deg);
+    top:36%;
+    transform:rotate(38deg);
 }
+
 
 .branch3{
-    width:70px;
+    width:75px;
     left:48%;
     top:15%;
-    transform:rotate(-60deg);
+    transform:rotate(-62deg);
 }
+
 
 .branch4{
-    width:75px;
+    width:80px;
     left:52%;
-    top:17%;
-    transform:rotate(60deg);
+    top:18%;
+    transform:rotate(62deg);
 }
 
 
-/* COLOUR HEARTS */
+/* ================================
+   TREE HEARTS
+================================ */
 
 .tree-heart{
     position:absolute;
@@ -389,36 +497,40 @@
     z-index:10;
 }
 
+
 .tree.grow .tree-heart{
     opacity:1;
     transform:scale(1);
 }
 
-.h1{left:15%;top:10%;color:#ff4f81;}
-.h2{left:48%;top:3%;color:#ff7b9c;}
-.h3{left:75%;top:15%;color:#ffb347;}
-.h4{left:25%;top:28%;color:#ff5c8a;}
-.h5{left:60%;top:25%;color:#ffd23f;}
-.h6{left:82%;top:35%;color:#ff6b9d;}
-.h7{left:8%;top:42%;color:#b66cff;}
-.h8{left:42%;top:42%;color:#ff8fab;}
-.h9{left:70%;top:48%;color:#ff9f43;}
-.h10{left:30%;top:55%;color:#ff4f81;}
-.h11{left:55%;top:58%;color:#7c83ff;}
-.h12{left:85%;top:58%;color:#ffcc33;}
+
+.h1{left:10%;top:8%;}
+.h2{left:45%;top:2%;}
+.h3{left:76%;top:13%;}
+.h4{left:23%;top:27%;}
+.h5{left:59%;top:24%;}
+.h6{left:83%;top:34%;}
+.h7{left:5%;top:42%;}
+.h8{left:40%;top:41%;}
+.h9{left:70%;top:47%;}
+.h10{left:28%;top:54%;}
+.h11{left:54%;top:57%;}
+.h12{left:84%;top:57%;}
 
 
-/* CONTINUE */
+/* ================================
+   CONTINUE
+================================ */
 
 .continue-btn{
     position:absolute;
 
-    bottom:6%;
+    bottom:5%;
     left:50%;
 
     transform:translateX(-50%);
 
-    padding:12px 25px;
+    padding:12px 27px;
 
     border:none;
     border-radius:30px;
@@ -435,26 +547,70 @@
     z-index:30;
 }
 
+
 .continue-btn.show{
     opacity:1;
 }
 
 
-/* MOBILE */
+/* ================================
+   MOBILE
+================================ */
 
 @media(max-width:600px){
 
-    .target-heart{
-        font-size:62px;
+    .wish-text{
+        top:7%;
+        font-size:17px;
     }
 
-    .tree{
-        left:63%;
-        width:150px;
+    .target-heart{
+        top:17%;
+        right:13%;
+        width:70px;
+        height:63px;
+    }
+
+    .target-heart:before,
+    .target-heart:after{
+        width:70px;
+        height:63px;
+    }
+
+    .target-heart:before{
+        top:-33px;
+    }
+
+    .target-heart:after{
+        left:33px;
+    }
+
+    .arrow{
+        left:17%;
+        bottom:27%;
+        width:130px;
+    }
+
+    .bow{
+        left:10%;
+        bottom:9%;
+        width:90px;
+        height:125px;
+    }
+
+    .bow-string{
+        left:17%;
+        bottom:10%;
+        height:115px;
+    }
+
+    .aim-help{
+        bottom:22%;
+        font-size:14px;
     }
 
     .birthday-title{
-        top:22%;
+        top:25%;
     }
 
     .birthday-title h1{
@@ -465,6 +621,81 @@
         font-size:28px;
     }
 
+    .tree{
+        right:2%;
+        width:150px;
+    }
+
+    .tree.grow{
+        height:48%;
+    }
+
+}
+
+
+/* ================================
+   ORIGINAL PASSWORD CENTER
+================================ */
+
+#passwordScreen{
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:25px;
+}
+
+
+#passwordScreen h1{
+    margin-bottom:15px;
+}
+
+
+#passwordScreen h2{
+    margin-bottom:15px;
+}
+
+
+#passwordInput{
+    padding:13px 18px;
+
+    border:none;
+    outline:none;
+
+    border-radius:25px;
+
+    font-size:17px;
+
+    text-align:center;
+}
+
+
+#passwordBtn{
+    margin-top:15px;
+
+    padding:13px 28px;
+
+    border:none;
+    border-radius:25px;
+
+    background:#ff4081;
+
+    color:white;
+
+    font-size:17px;
+
+    cursor:pointer;
+}
+
+
+#passwordError{
+    margin-top:10px;
 }
 
 </style>
@@ -475,9 +706,7 @@
 <body>
 
 
-<!-- =================================
-     PASSWORD SCREEN
-================================= -->
+<!-- PASSWORD -->
 
 <div id="passwordScreen">
 
@@ -502,10 +731,7 @@
 </div>
 
 
-
-<!-- =================================
-     NEW BIRTHDAY ANIMATION
-================================= -->
+<!-- BIRTHDAY ANIMATION -->
 
 <div id="birthdayAnimation">
 
@@ -514,42 +740,29 @@
     </div>
 
 
-    <!-- TARGET -->
-
     <div
         id="targetHeart"
         class="target-heart">
-        ❤️
+
+        <span class="shine"></span>
+
     </div>
 
-
-    <!-- AIM AREA -->
 
     <div class="aim-area">
 
+        <div id="arrow" class="arrow"></div>
 
-        <div
-            id="arrow"
-            class="arrow">
-        </div>
+        <div class="bow"></div>
 
-
-        <div class="bow">
-        </div>
-
-        <div class="bow-string">
-        </div>
-
+        <div class="bow-string"></div>
 
         <div class="aim-help">
-            👆 Arrow ko drag karke ❤️ par aim karo
+            👆 Teer ko drag karke ❤️ par aim karo
         </div>
-
 
     </div>
 
-
-    <!-- BIRTHDAY TITLE -->
 
     <div
         id="birthdayTitle"
@@ -576,26 +789,14 @@
 
     <!-- TREE -->
 
-    <div
-        id="tree"
-        class="tree">
+    <div id="tree" class="tree">
 
-        <div class="trunk">
-        </div>
+        <div class="trunk"></div>
 
-
-        <div class="branch branch1">
-        </div>
-
-        <div class="branch branch2">
-        </div>
-
-        <div class="branch branch3">
-        </div>
-
-        <div class="branch branch4">
-        </div>
-
+        <div class="branch branch1"></div>
+        <div class="branch branch2"></div>
+        <div class="branch branch3"></div>
+        <div class="branch branch4"></div>
 
         <span class="tree-heart h1">❤️</span>
         <span class="tree-heart h2">🩷</span>
@@ -624,10 +825,7 @@
 </div>
 
 
-
-<!-- =================================
-     OPENING SCREEN
-================================= -->
+<!-- EXISTING LOADER -->
 
 <div id="loader" style="display:none;">
 
@@ -644,10 +842,7 @@
 </div>
 
 
-
-<!-- =================================
-     MAIN WEBSITE
-================================= -->
+<!-- MAIN -->
 
 <div id="main" style="display:none;">
 
@@ -660,534 +855,39 @@
     </h2>
 
 
-
-    <!-- PHOTO BOX 1 -->
-
     <div class="swipe-box">
-
         <div class="swipe-area">
-
-            <div class="swipe-hint">
-                👆 Swipe
-            </div>
-
-            <img
-                src="IMG-20260308-WA0001.jpg"
-                class="hidden-content"
-            >
-
+            <div class="swipe-hint">👆 Swipe</div>
+            <img src="IMG-20260308-WA0001.jpg" class="hidden-content">
         </div>
-
     </div>
 
 
-
-    <!-- PHOTO BOX 2 -->
-
     <div class="swipe-box">
-
         <div class="swipe-area">
-
-            <div class="swipe-hint">
-                👆 Swipe
-            </div>
-
-            <img
-                src="photo 1.png"
-                class="hidden-content"
-            >
-
+            <div class="swipe-hint">👆 Swipe</div>
+            <img src="photo 1.png" class="hidden-content">
         </div>
-
     </div>
 
 
-
-    <!-- PHOTO BOX 3 -->
-
     <div class="swipe-box">
-
         <div class="swipe-area">
-
-            <div class="swipe-hint">
-                👆 Swipe
-            </div>
-
-            <img
-                src="photo 2.png"
-                class="hidden-content"
-            >
-
+            <div class="swipe-hint">👆 Swipe</div>
+            <img src="photo 2.png" class="hidden-content">
         </div>
-
     </div>
 
 
-
-    <!-- PHOTO BOX 4 -->
-
     <div class="swipe-box">
-
         <div class="swipe-area">
-
-            <div class="swipe-hint">
-                👆 Swipe
-            </div>
-
-            <img
-                src="photo 3.jpg"
-                class="hidden-content"
-            >
-
+            <div class="swipe-hint">👆 Swipe</div>
+            <img src="photo 3.jpg" class="hidden-content">
         </div>
-
     </div>
 
 
-
-    <!-- PHOTO BOX 5 -->
-
     <div class="swipe-box">
-
         <div class="swipe-area">
-
-            <div class="swipe-hint">
-                👆 Swipe
-            </div>
-
-            <img
-                src="photo 4.jpg"
-                class="hidden-content"
-            >
-
-        </div>
-
-    </div>
-
-
-
-    <!-- VIDEO BOX -->
-
-    <div class="swipe-box">
-
-        <div class="swipe-area">
-
-            <div class="swipe-hint">
-                👆 Swipe
-            </div>
-
-            <video
-                controls
-                loop
-                class="hidden-content"
-            >
-
-                <source
-                    src="VN20260905_111408.mp4"
-                    type="video/mp4"
-                >
-
-            </video>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- BIRTHDAY MESSAGE -->
-
-    <p class="msg">
-
-        Dear Ayushi ❤️<br><br>
-
-        May your birthday be filled with happiness, love, joy,
-        success, beautiful memories and endless smiles.<br><br>
-
-        Stay Happy 😊<br>
-        Stay Blessed 🌸<br><br>
-
-        Happy Birthday 🎂
-
-    </p>
-
-
-
-    <!-- GIFT BUTTON -->
-
-    <a href="gift.html">
-
-        <button id="giftBtn">
-            🎁 Open Gift 🎁
-        </button>
-
-    </a>
-
-
-
-    <!-- REPLY BUTTON -->
-
-    <a
-        href="https://wa.me/919288056524?text=Hi%20Ayush%20❤️%20I%20saw%20your%20birthday%20surprise."
-        target="_blank">
-
-        <button id="replyBtn">
-            💬 Reply to Ayush ❤️
-        </button>
-
-    </a>
-
-
-
-    <!-- FOOTER -->
-
-    <h2 class="made">
-
-        🌹Made With ❤️
-
-        <br><br>
-
-        only
-
-        <br>
-
-        for you ♥️🌹
-
-    </h2>
-
-
-</div>
-
-
-
-<!-- =================================
-     MUSIC
-================================= -->
-
-<audio id="music" loop>
-
-    <source
-        src="songe .mp3"
-        type="audio/mpeg">
-
-</audio>
-
-
-
-<script src="script.js"></script>
-
-
-<script>
-
-/* =================================
-   START ANIMATION AFTER PASSWORD
-   WITHOUT CHANGING YOUR PASSWORD CODE
-================================= */
-
-const passwordScreen =
-    document.getElementById("passwordScreen");
-
-const birthdayAnimation =
-    document.getElementById("birthdayAnimation");
-
-const loader =
-    document.getElementById("loader");
-
-const main =
-    document.getElementById("main");
-
-
-const observer =
-    new MutationObserver(function(){
-
-        const hidden =
-            passwordScreen.style.display === "none" ||
-            getComputedStyle(passwordScreen).display === "none";
-
-
-        if(hidden){
-
-            /*
-              Existing website ko temporarily hide
-              karke animation start karenge.
-            */
-
-            if(loader){
-                loader.style.display = "none";
-            }
-
-            if(main){
-                main.style.display = "none";
-            }
-
-            birthdayAnimation.style.display = "block";
-
-            observer.disconnect();
-
-        }
-
-    });
-
-
-observer.observe(
-    passwordScreen,
-    {
-        attributes:true,
-        attributeFilter:["style","class"]
-    }
-);
-
-
-
-/* =================================
-   ARROW DRAG
-================================= */
-
-const arrow =
-    document.getElementById("arrow");
-
-const target =
-    document.getElementById("targetHeart");
-
-let dragging = false;
-
-let startX = 0;
-let startY = 0;
-
-
-function moveArrow(x,y){
-
-    const centerX =
-        window.innerWidth / 2;
-
-    const bottomY =
-        window.innerHeight * 0.76;
-
-
-    const dx =
-        x - centerX;
-
-    const dy =
-        y - bottomY;
-
-
-    let angle =
-        Math.atan2(dy,dx) * 180 / Math.PI;
-
-
-    /*
-      Arrow ko mostly upward direction
-      mein restrict kar rahe hain.
-    */
-
-    if(angle < -170){
-        angle = -170;
-    }
-
-    if(angle > -10){
-        angle = -10;
-    }
-
-
-    arrow.style.transform =
-        `translateX(-50%) rotate(${angle}deg)`;
-
-}
-
-
-arrow.addEventListener(
-    "pointerdown",
-    function(event){
-
-        dragging = true;
-
-        arrow.setPointerCapture(event.pointerId);
-
-    }
-);
-
-
-arrow.addEventListener(
-    "pointermove",
-    function(event){
-
-        if(!dragging) return;
-
-        moveArrow(
-            event.clientX,
-            event.clientY
-        );
-
-    }
-);
-
-
-arrow.addEventListener(
-    "pointerup",
-    function(event){
-
-        if(!dragging) return;
-
-        dragging = false;
-
-        checkHit();
-
-    }
-);
-
-
-
-/* =================================
-   CHECK HEART HIT
-================================= */
-
-function checkHit(){
-
-    const arrowRect =
-        arrow.getBoundingClientRect();
-
-    const heartRect =
-        target.getBoundingClientRect();
-
-
-    const arrowX =
-        arrowRect.left +
-        arrowRect.width / 2;
-
-    const arrowY =
-        arrowRect.top +
-        arrowRect.height / 2;
-
-
-    const heartX =
-        heartRect.left +
-        heartRect.width / 2;
-
-    const heartY =
-        heartRect.top +
-        heartRect.height / 2;
-
-
-    const distance =
-        Math.sqrt(
-            Math.pow(arrowX-heartX,2) +
-            Math.pow(arrowY-heartY,2)
-        );
-
-
-    if(distance < 100){
-
-        hitHeart();
-
-    }
-    else{
-
-        /*
-          Miss hone par arrow
-          wapas starting position par.
-        */
-
-        arrow.style.transition =
-            "transform .5s ease";
-
-        arrow.style.transform =
-            "translateX(-50%) rotate(-90deg)";
-
-        setTimeout(function(){
-
-            arrow.style.transition =
-                "transform .15s";
-
-        },500);
-
-    }
-
-}
-
-
-
-/* =================================
-   HEART HIT
-================================= */
-
-function hitHeart(){
-
-    target.classList.add("hit-heart");
-
-    arrow.style.opacity = "0";
-
-    document.querySelector(".aim-help")
-        .style.opacity = "0";
-
-
-    setTimeout(function(){
-
-        showBirthday();
-
-    },900);
-
-}
-
-
-
-/* =================================
-   BIRTHDAY + TREE
-================================= */
-
-function showBirthday(){
-
-    const title =
-        document.getElementById("birthdayTitle");
-
-    const tree =
-        document.getElementById("tree");
-
-    const continueBtn =
-        document.getElementById("continueBtn");
-
-
-    title.classList.add("show");
-
-
-    setTimeout(function(){
-
-        tree.classList.add("grow");
-
-    },1200);
-
-
-    setTimeout(function(){
-
-        continueBtn.classList.add("show");
-
-    },4000);
-
-}
-
-
-
-/* =================================
-   CONTINUE TO EXISTING WEBSITE
-================================= */
-
-document.getElementById("continueBtn")
-    .addEventListener("click",function(){
-
-        birthdayAnimation.style.display =
-            "none";
-
-        if(loader){
-
-            loader.style.display =
-                "block";
-
-        }
-
-    });
-
-</script>
-
-
-</body>
-
-</html>
+            <div class="swipe-hint">👆 Swipe</div>
+            <img src="photo 4.jpg
