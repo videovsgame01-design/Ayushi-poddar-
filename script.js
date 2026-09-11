@@ -22,435 +22,18 @@ window.addEventListener("DOMContentLoaded", function () {
     const main = document.getElementById("main");
     const music = document.getElementById("music");
 
-    const aimArea = document.querySelector(".aim-area");
-    const bow = document.querySelector(".bow");
-    const bowString = document.querySelector(".bow-string");
-    const aimHelp = document.querySelector(".aim-help");
-
 
     /* =========================================
-       SAFETY CHECK
+       CHECK IMPORTANT ELEMENTS
     ========================================= */
 
     if (!passwordScreen || !passwordInput || !passwordBtn) {
-        console.error("Password elements missing from index.html");
+
+        console.error(
+            "Password elements missing from index.html"
+        );
+
         return;
-    }
-
-
-    /* =========================================
-       ARCHERY DESIGN OVERRIDE
-       Existing HTML ko change karne ki zarurat nahi
-    ========================================= */
-
-    function addArcheryStyles() {
-
-        if (document.getElementById("newArcheryStyles")) {
-            return;
-        }
-
-        const style = document.createElement("style");
-        style.id = "newArcheryStyles";
-
-        style.textContent = `
-
-        /* -------------------------------
-           ARCHERY AREA
-        -------------------------------- */
-
-        .aim-area {
-            position: absolute !important;
-            inset: 0 !important;
-            overflow: visible !important;
-            touch-action: none !important;
-        }
-
-
-        /* -------------------------------
-           BOW
-        -------------------------------- */
-
-        .bow {
-            position: absolute !important;
-
-            left: 18% !important;
-            bottom: 10% !important;
-
-            width: 110px !important;
-            height: 155px !important;
-
-            border-left: 8px solid #6d3b24 !important;
-            border-radius: 50% !important;
-
-            transform: rotate(-8deg) !important;
-
-            z-index: 5 !important;
-
-            filter:
-                drop-shadow(0 5px 5px rgba(0,0,0,.25));
-        }
-
-
-        /* -------------------------------
-           BOW STRING
-        -------------------------------- */
-
-        .bow-string {
-            position: absolute !important;
-
-            left: calc(18% + 108px) !important;
-            bottom: 10% !important;
-
-            width: 3px !important;
-            height: 155px !important;
-
-            background: #fff !important;
-
-            transform: none !important;
-
-            z-index: 6 !important;
-
-            box-shadow:
-                0 0 4px rgba(255,255,255,.8);
-        }
-
-
-        /* -------------------------------
-           ARROW
-        -------------------------------- */
-
-        .arrow {
-            position: absolute !important;
-
-            width: 155px !important;
-            height: 7px !important;
-
-            background:
-                linear-gradient(
-                    to right,
-                    #7a4329 0%,
-                    #a9653b 75%,
-                    #d9d9d9 76%,
-                    #ffffff 100%
-                ) !important;
-
-            border-radius: 10px !important;
-
-            transform-origin: 10px 50% !important;
-
-            z-index: 20 !important;
-
-            cursor: grab !important;
-
-            touch-action: none !important;
-
-            box-shadow:
-                0 2px 5px rgba(0,0,0,.25);
-        }
-
-
-        /* Arrow tip */
-
-        .arrow::after {
-            content: "";
-
-            position: absolute;
-
-            right: -7px;
-            top: 50%;
-
-            width: 0;
-            height: 0;
-
-            transform: translateY(-50%);
-
-            border-top: 7px solid transparent;
-            border-bottom: 7px solid transparent;
-            border-left: 13px solid #d7d7d7;
-
-            filter:
-                drop-shadow(0 1px 2px rgba(0,0,0,.3));
-        }
-
-
-        /* Arrow feathers */
-
-        .arrow::before {
-            content: "";
-
-            position: absolute;
-
-            left: 12px;
-            top: 50%;
-
-            width: 18px;
-            height: 12px;
-
-            transform:
-                translateY(-50%)
-                rotate(45deg);
-
-            border-radius: 2px 8px 2px 8px;
-
-            background: #e85d75;
-        }
-
-
-        /* -------------------------------
-           TARGET HEART
-        -------------------------------- */
-
-        .target-heart {
-            position: absolute !important;
-
-            width: 78px !important;
-            height: 78px !important;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #ff416c,
-                    #ff1744 55%,
-                    #c51162
-                ) !important;
-
-            border-radius: 18px 0 18px 18px !important;
-
-            transform: rotate(-45deg) !important;
-
-            box-shadow:
-                0 0 15px rgba(255,65,108,.7),
-                0 0 35px rgba(255,65,108,.35);
-
-            z-index: 10 !important;
-
-            transition:
-                transform .5s ease,
-                opacity .5s ease;
-        }
-
-
-        .target-heart::before,
-        .target-heart::after {
-            content: "";
-
-            position: absolute;
-
-            width: 78px;
-            height: 78px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #ff416c,
-                    #ff1744 55%,
-                    #c51162
-                );
-
-            border-radius: 50%;
-        }
-
-
-        .target-heart::before {
-            top: -39px;
-            left: 0;
-        }
-
-
-        .target-heart::after {
-            top: 0;
-            left: 39px;
-        }
-
-
-        .target-heart .shine {
-            position: absolute;
-
-            width: 18px;
-            height: 28px;
-
-            left: 17px;
-            top: 15px;
-
-            background: rgba(255,255,255,.7);
-
-            border-radius: 50%;
-
-            transform: rotate(45deg);
-
-            z-index: 5;
-        }
-
-
-        /* Extra target ring */
-
-        .target-ring {
-            position: absolute;
-
-            width: 112px;
-            height: 112px;
-
-            left: -17px;
-            top: -17px;
-
-            border: 2px solid rgba(255,255,255,.65);
-
-            border-radius: 50%;
-
-            transform: rotate(45deg);
-
-            box-shadow:
-                0 0 15px rgba(255,255,255,.25);
-
-            animation: targetPulse 1.8s ease-in-out infinite;
-
-            pointer-events: none;
-
-            z-index: -1;
-        }
-
-
-        @keyframes targetPulse {
-
-            0%, 100% {
-                transform:
-                    rotate(45deg)
-                    scale(.92);
-
-                opacity: .45;
-            }
-
-            50% {
-                transform:
-                    rotate(45deg)
-                    scale(1.08);
-
-                opacity: .9;
-            }
-        }
-
-
-        /* Hit animation */
-
-        .hit-heart {
-            animation:
-                heartHit .8s ease forwards !important;
-        }
-
-
-        @keyframes heartHit {
-
-            0% {
-                transform:
-                    rotate(-45deg)
-                    scale(1);
-            }
-
-            35% {
-                transform:
-                    rotate(-45deg)
-                    scale(1.3);
-            }
-
-            100% {
-                transform:
-                    rotate(-45deg)
-                    scale(.1);
-
-                opacity: 0;
-            }
-        }
-
-
-        /* -------------------------------
-           HELP TEXT
-        -------------------------------- */
-
-        .aim-help {
-            z-index: 30 !important;
-
-            transition:
-                opacity .3s ease,
-                transform .3s ease;
-        }
-
-
-        /* -------------------------------
-           MOBILE
-        -------------------------------- */
-
-        @media (max-width: 600px) {
-
-            .bow {
-                left: 8% !important;
-                bottom: 11% !important;
-
-                width: 90px !important;
-                height: 130px !important;
-
-                border-left-width: 7px !important;
-            }
-
-            .bow-string {
-                left: calc(8% + 88px) !important;
-                bottom: 11% !important;
-
-                height: 130px !important;
-            }
-
-            .arrow {
-                width: 135px !important;
-                height: 6px !important;
-            }
-
-            .target-heart {
-                width: 65px !important;
-                height: 65px !important;
-            }
-
-            .target-heart::before,
-            .target-heart::after {
-                width: 65px;
-                height: 65px;
-            }
-
-            .target-heart::before {
-                top: -32px;
-            }
-
-            .target-heart::after {
-                left: 32px;
-            }
-
-            .target-ring {
-                width: 95px;
-                height: 95px;
-
-                left: -15px;
-                top: -15px;
-            }
-        }
-
-        `;
-
-        document.head.appendChild(style);
-    }
-
-
-    addArcheryStyles();
-
-
-    /* =========================================
-       ADD TARGET RING
-    ========================================= */
-
-    if (targetHeart && !targetHeart.querySelector(".target-ring")) {
-
-        const ring = document.createElement("span");
-
-        ring.className = "target-ring";
-
-        targetHeart.appendChild(ring);
     }
 
 
@@ -474,151 +57,177 @@ window.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       ARCHERY VARIABLES
+       PASSWORD SYSTEM
     ========================================= */
 
-    let dragging = false;
+    function unlockWebsite() {
 
-    let currentAngle = -27;
+        const enteredPassword =
+            passwordInput.value.trim();
 
-    let arrowHit = false;
 
-    let arrowHomeTimer = null;
+        /* CORRECT PASSWORD */
+
+        if (enteredPassword === "5121314") {
+
+            passwordError.textContent = "";
+
+            passwordScreen.style.display = "none";
+
+
+            /* Start animation */
+
+            if (birthdayAnimation) {
+
+                birthdayAnimation.style.display =
+                    "block";
+
+                startBirthdayAnimation();
+
+            }
+
+        }
+
+        /* WRONG PASSWORD */
+
+        else {
+
+            passwordError.textContent =
+                "❌ Wrong Password ❤️";
+
+            passwordInput.value = "";
+
+            passwordInput.focus();
+
+        }
+
+    }
+
+
+    passwordBtn.addEventListener(
+        "click",
+        unlockWebsite
+    );
+
+
+    passwordInput.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key === "Enter") {
+
+                event.preventDefault();
+
+                unlockWebsite();
+
+            }
+
+        }
+    );
 
 
     /* =========================================
-       ARROW POSITION
+       START BIRTHDAY ANIMATION
     ========================================= */
 
-    function positionArrow(resetAngle = false) {
+    function startBirthdayAnimation() {
 
-        if (!arrow || !bowString || !aimArea) {
-            return;
+        if (birthdayTitle) {
+            birthdayTitle.classList.remove("show");
         }
 
-        if (resetAngle) {
-            currentAngle = -27;
+        if (tree) {
+            tree.classList.remove("grow");
         }
 
-        const areaRect =
-            aimArea.getBoundingClientRect();
+        if (continueBtn) {
+            continueBtn.classList.remove("show");
+        }
 
-        const stringRect =
-            bowString.getBoundingClientRect();
+        if (targetHeart) {
+            targetHeart.classList.remove("hit-heart");
+            targetHeart.style.opacity = "1";
+        }
 
+        if (arrow) {
 
-        /*
-         * Bow string ke exact center ko arrow ka nock point
-         * banaya gaya hai.
-         */
+            arrow.style.opacity = "1";
 
-        const nockX =
-            stringRect.left +
-            stringRect.width / 2;
+            arrow.style.transform =
+                "rotate(-25deg)";
 
-        const nockY =
-            stringRect.top +
-            stringRect.height / 2;
+        }
 
-
-        /*
-         * Arrow ka left side nock point par rakho.
-         */
-
-        const arrowX =
-            nockX -
-            areaRect.left -
-            10;
-
-        const arrowY =
-            nockY -
-            areaRect.top -
-            arrow.offsetHeight / 2;
-
-
-        arrow.style.left =
-            arrowX + "px";
-
-        arrow.style.top =
-            arrowY + "px";
-
-
-        arrow.style.transform =
-            "rotate(" +
-            currentAngle +
-            "deg)";
     }
 
 
     /* =========================================
-       GET ARROW ORIGIN
+       ARROW DRAG
     ========================================= */
 
-    function getArrowOrigin() {
+    if (arrow && targetHeart) {
 
-        const areaRect =
-            aimArea.getBoundingClientRect();
-
-        const arrowStyle =
-            getComputedStyle(arrow);
-
-        const left =
-            parseFloat(arrowStyle.left) || 0;
-
-        const top =
-            parseFloat(arrowStyle.top) || 0;
+        let dragging = false;
 
 
-        return {
+        arrow.addEventListener(
+            "pointerdown",
+            function (event) {
 
-            x:
-                areaRect.left +
-                left +
-                10,
+                dragging = true;
 
-            y:
-                areaRect.top +
-                top +
-                arrow.offsetHeight / 2
-        };
-    }
+                arrow.setPointerCapture(
+                    event.pointerId
+                );
 
+                arrow.style.cursor = "grabbing";
 
-    /* =========================================
-       GET ARROW TIP
-    ========================================= */
-
-    function getArrowTip() {
-
-        const origin =
-            getArrowOrigin();
-
-        const radians =
-            currentAngle *
-            Math.PI /
-            180;
+            }
+        );
 
 
-        /*
-         * Arrow ki actual length.
-         */
+        arrow.addEventListener(
+            "pointermove",
+            function (event) {
 
-        const length =
-            arrow.offsetWidth + 8;
+                if (!dragging) return;
+
+                rotateArrow(
+                    event.clientX,
+                    event.clientY
+                );
+
+            }
+        );
 
 
-        return {
+        arrow.addEventListener(
+            "pointerup",
+            function (event) {
 
-            x:
-                origin.x +
-                Math.cos(radians) *
-                length,
+                if (!dragging) return;
 
-            y:
-                origin.y +
-                Math.sin(radians) *
-                length
-        };
+                dragging = false;
+
+                arrow.style.cursor = "grab";
+
+                checkArrowHit();
+
+            }
+        );
+
+
+        arrow.addEventListener(
+            "pointercancel",
+            function () {
+
+                dragging = false;
+
+                arrow.style.cursor = "grab";
+
+            }
+        );
+
     }
 
 
@@ -628,20 +237,28 @@ window.addEventListener("DOMContentLoaded", function () {
 
     function rotateArrow(x, y) {
 
-        if (!arrow || !aimArea) {
-            return;
-        }
+        const rect =
+            arrow.getBoundingClientRect();
 
 
-        const origin =
-            getArrowOrigin();
+        /*
+          Arrow ke starting point ko use kar rahe hain.
+          Bounding-box ke right edge ko nahi.
+        */
+
+        const originX =
+            rect.left + 10;
+
+        const originY =
+            rect.top +
+            rect.height / 2;
 
 
         const dx =
-            x - origin.x;
+            x - originX;
 
         const dy =
-            y - origin.y;
+            y - originY;
 
 
         let angle =
@@ -651,49 +268,48 @@ window.addEventListener("DOMContentLoaded", function () {
 
 
         /*
-         * Arrow ko sirf upar/target direction
-         * mein aim karne dena.
-         */
+          Sirf upar ki taraf aim
+        */
 
-        if (angle > 12) {
-            angle = 12;
+        if (angle > 10) {
+            angle = 10;
         }
 
-        if (angle < -78) {
-            angle = -78;
+        if (angle < -75) {
+            angle = -75;
         }
-
-
-        currentAngle = angle;
 
 
         arrow.style.transform =
-            "rotate(" +
-            currentAngle +
-            "deg)";
+            "rotate(" + angle + "deg)";
+
     }
 
 
     /* =========================================
-       CHECK HIT
+       CHECK ARROW + HEART
     ========================================= */
 
     function checkArrowHit() {
 
-        if (
-            !arrow ||
-            !targetHeart ||
-            arrowHit
-        ) {
-            return false;
-        }
-
-
-        const tip =
-            getArrowTip();
+        const arrowRect =
+            arrow.getBoundingClientRect();
 
         const heartRect =
             targetHeart.getBoundingClientRect();
+
+
+        /*
+          Arrow ka approximate tip.
+        */
+
+        const tipX =
+            arrowRect.left +
+            arrowRect.width * 0.92;
+
+        const tipY =
+            arrowRect.top +
+            arrowRect.height / 2;
 
 
         const heartX =
@@ -705,293 +321,276 @@ window.addEventListener("DOMContentLoaded", function () {
             heartRect.height / 2;
 
 
-        const dx =
-            tip.x - heartX;
-
-        const dy =
-            tip.y - heartY;
-
-
         const distance =
             Math.sqrt(
-                dx * dx +
-                dy * dy
+                Math.pow(tipX - heartX, 2) +
+                Math.pow(tipY - heartY, 2)
             );
 
 
         /*
-         * Hit area intentionally thoda forgiving rakha hai
-         * taaki mobile par easy rahe.
-         */
+          Heart ke paas hua to hit.
+        */
 
-        const hitDistance =
-            window.innerWidth <= 600
-                ? 100
-                : 115;
+        if (distance < 150) {
 
+            hitHeart();
 
-        if (distance <= hitDistance) {
-
-            shootArrowToHeart();
-
-            return true;
         }
 
-
-        return false;
     }
 
 
     /* =========================================
-       SHOOT ARROW TO HEART
+       HEART HIT
     ========================================= */
 
-    function shootArrowToHeart() {
+    function hitHeart() {
 
-        if (arrowHit) {
-            return;
-        }
-
-        arrowHit = true;
-
-
-        if (aimHelp) {
-            aimHelp.style.opacity = "0";
-        }
-
-
-        const heartRect =
-            targetHeart.getBoundingClientRect();
-
-
-        const targetX =
-            heartRect.left +
-            heartRect.width / 2;
-
-        const targetY =
-            heartRect.top +
-            heartRect.height / 2;
-
-
-        const radians =
-            currentAngle *
-            Math.PI /
-            180;
-
-
-        const length =
-            arrow.offsetWidth + 8;
-
-
-        /*
-         * Tip ko heart center par le jaane ke liye
-         * arrow ka nock point calculate karo.
-         */
-
-        const newNockX =
-            targetX -
-            Math.cos(radians) *
-            length;
-
-        const newNockY =
-            targetY -
-            Math.sin(radians) *
-            length;
-
-
-        const areaRect =
-            aimArea.getBoundingClientRect();
-
-
-        const newLeft =
-            newNockX -
-            areaRect.left -
-            10;
-
-        const newTop =
-            newNockY -
-            areaRect.top -
-            arrow.offsetHeight / 2;
-
-
-        arrow.style.transition =
-            "left .45s ease-out, " +
-            "top .45s ease-out, " +
-            "opacity .25s ease";
-
-
-        arrow.style.left =
-            newLeft + "px";
-
-        arrow.style.top =
-            newTop + "px";
-
-
-        setTimeout(function () {
-
-            if (targetHeart) {
-
-                targetHeart.classList.add(
-                    "hit-heart"
-                );
-            }
-
-        }, 250);
-
-
-        setTimeout(function () {
-
-            arrow.style.opacity = "0";
-
-        }, 400);
-
-
-        setTimeout(function () {
-
-            showBirthday();
-
-        }, 850);
-    }
-
-
-    /* =========================================
-       RESET ARROW
-    ========================================= */
-
-    function resetArrow() {
-
-        if (!arrow || arrowHit) {
+        if (
+            targetHeart.classList.contains(
+                "hit-heart"
+            )
+        ) {
             return;
         }
 
 
-        arrow.style.transition =
-            "left .35s ease, " +
-            "top .35s ease, " +
-            "transform .35s ease";
+        targetHeart.classList.add(
+            "hit-heart"
+        );
 
 
-        positionArrow(true);
+        arrow.style.opacity = "0";
+
+
+        const help =
+            document.querySelector(".aim-help");
+
+
+        if (help) {
+            help.style.opacity = "0";
+        }
+
+
+        setTimeout(
+            showBirthday,
+            850
+        );
+
     }
 
 
     /* =========================================
-       ARROW POINTER EVENTS
+       SHOW HAPPY BIRTHDAY
     ========================================= */
 
-    if (
-        arrow &&
-        targetHeart &&
-        aimArea &&
-        bowString
-    ) {
+    function showBirthday() {
 
-        arrow.addEventListener(
-            "pointerdown",
-            function (event) {
+        if (birthdayTitle) {
 
-                if (arrowHit) {
-                    return;
-                }
+            birthdayTitle.classList.add(
+                "show"
+            );
+
+        }
 
 
-                event.preventDefault();
+        /* Tree grows */
 
-
-                dragging = true;
-
-
-                arrow.setPointerCapture(
-                    event.pointerId
-                );
-
-
-                arrow.style.cursor =
-                    "grabbing";
-
-
-                arrow.style.transition =
-                    "none";
-            }
-        );
-
-
-        arrow.addEventListener(
-            "pointermove",
-            function (event) {
-
-                if (!dragging || arrowHit) {
-                    return;
-                }
-
-
-                event.preventDefault();
-
-
-                rotateArrow(
-                    event.clientX,
-                    event.clientY
-                );
-            }
-        );
-
-
-        arrow.addEventListener(
-            "pointerup",
-            function (event) {
-
-                if (!dragging) {
-                    return;
-                }
-
-
-                event.preventDefault();
-
-
-                dragging = false;
-
-
-                arrow.style.cursor =
-                    "grab";
-
-
-                if (
-                    arrow.hasPointerCapture(
-                        event.pointerId
-                    )
-                ) {
-
-                    arrow.releasePointerCapture(
-                        event.pointerId
-                    );
-                }
-
-
-                const hit =
-                    checkArrowHit();
-
-
-                if (!hit) {
-
-                    clearTimeout(
-                        arrowHomeTimer
-                    );
-
-
-                    arrowHomeTimer =
-                        setTimeout(
-                            resetArrow,
-                            180
-                        );
-                }
-            }
-        );
-
-
-        arrow.addEventListener(
-            "pointercancel",
+        setTimeout(
             function () {
 
-                dragging = false;
+                if (tree) {
 
-                arrow
+                    tree.classList.add(
+                        "grow"
+                    );
+
+                }
+
+            },
+            1200
+        );
+
+
+        /* Continue button */
+
+        setTimeout(
+            function () {
+
+                if (continueBtn) {
+
+                    continueBtn.classList.add(
+                        "show"
+                    );
+
+                }
+
+            },
+            4000
+        );
+
+    }
+
+
+    /* =========================================
+       CONTINUE
+    ========================================= */
+
+    if (continueBtn) {
+
+        continueBtn.addEventListener(
+            "click",
+            function () {
+
+                if (birthdayAnimation) {
+
+                    birthdayAnimation.style.display =
+                        "none";
+
+                }
+
+
+                if (loader) {
+
+                    loader.style.display =
+                        "flex";
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       OPEN SURPRISE
+    ========================================= */
+
+    if (startBtn) {
+
+        startBtn.addEventListener(
+            "click",
+            function () {
+
+                if (loader) {
+
+                    loader.style.display =
+                        "none";
+
+                }
+
+
+                if (main) {
+
+                    main.style.display =
+                        "block";
+
+                }
+
+
+                if (music) {
+
+                    music.play()
+                        .catch(function () {});
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       PHOTO / VIDEO SWIPE
+    ========================================= */
+
+    const boxes =
+        document.querySelectorAll(
+            ".swipe-box"
+        );
+
+
+    boxes.forEach(
+        function (box) {
+
+            let startX = 0;
+            let startY = 0;
+
+
+            box.addEventListener(
+                "touchstart",
+                function (event) {
+
+                    if (
+                        !event.touches ||
+                        !event.touches[0]
+                    ) {
+                        return;
+                    }
+
+
+                    startX =
+                        event.touches[0].clientX;
+
+                    startY =
+                        event.touches[0].clientY;
+
+                },
+                {
+                    passive: true
+                }
+            );
+
+
+            box.addEventListener(
+                "touchend",
+                function (event) {
+
+                    if (
+                        !event.changedTouches ||
+                        !event.changedTouches[0]
+                    ) {
+                        return;
+                    }
+
+
+                    const endX =
+                        event.changedTouches[0].clientX;
+
+                    const endY =
+                        event.changedTouches[0].clientY;
+
+
+                    const differenceX =
+                        endX - startX;
+
+                    const differenceY =
+                        endY - startY;
+
+
+                    if (
+                        Math.abs(differenceX) > 50 &&
+                        Math.abs(differenceX) >
+                        Math.abs(differenceY)
+                    ) {
+
+                        box.classList.add(
+                            "revealed"
+                        );
+
+                    }
+
+                },
+                {
+                    passive: true
+                }
+            );
+
+        }
+    );
+
+});
