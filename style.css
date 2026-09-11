@@ -5,7 +5,9 @@
     font-family:'Poppins',sans-serif;
 }
 
+
 body{
+
     background:
     linear-gradient(
         135deg,
@@ -15,652 +17,22 @@ body{
     );
 
     min-height:100vh;
+
     overflow-x:hidden;
+
     text-align:center;
+
     color:#fff;
 }
 
 
-/* =================================
-   PASSWORD
-================================= */
 
-#passwordScreen{
-    min-height:100vh;
-
-    display:flex;
-    flex-direction:column;
-
-    justify-content:center;
-    align-items:center;
-
-    padding:20px;
-}
-
-#passwordScreen h1{
-    font-size:34px;
-    margin-bottom:15px;
-}
-
-#passwordScreen h2{
-    margin-bottom:20px;
-}
-
-#passwordInput{
-    width:min(300px,90%);
-
-    padding:14px 18px;
-
-    border:none;
-    outline:none;
-
-    border-radius:30px;
-
-    text-align:center;
-    font-size:17px;
-
-    background:rgba(255,255,255,.9);
-}
-
-#passwordBtn{
-    margin-top:15px;
-
-    padding:13px 30px;
-
-    border:none;
-    border-radius:30px;
-
-    background:#ff4081;
-    color:white;
-
-    font-size:17px;
-
-    cursor:pointer;
-}
-
-#passwordError{
-    margin-top:12px;
-    color:#b00020;
-}
-
-
-/* =================================
-   BIRTHDAY ANIMATION
-================================= */
-
-#birthdayAnimation{
-    position:relative;
-
-    width:100%;
-    height:100vh;
-
-    min-height:650px;
-
-    overflow:hidden;
-
-    background:
-    radial-gradient(
-        circle at 50% 35%,
-        rgba(255,255,255,.35),
-        transparent 35%
-    ),
-    linear-gradient(
-        135deg,
-        #ff9a9e,
-        #fad0c4
-    );
-}
-
-
-/* =================================
-   WISH TEXT
-================================= */
-
-.wish-text{
-    position:absolute;
-
-    top:8%;
-    left:0;
-    right:0;
-
-    font-size:25px;
-
-    font-weight:500;
-
-    letter-spacing:2px;
-
-    text-shadow:
-    0 2px 10px rgba(0,0,0,.2);
-
-    z-index:50;
-}
-
-
-/* =================================
-   AIM AREA
-================================= */
-
-.aim-area{
-    position:absolute;
-
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    overflow:hidden;
-
-    touch-action:none;
-
-    user-select:none;
-
-    -webkit-user-select:none;
-}
-
-
-/* =================================
-   BOW
-================================= */
-
-.bow{
-    position:absolute;
-
-    left:15%;
-    bottom:14%;
-
-    width:105px;
-    height:170px;
-
-    border-left:
-    9px solid #713d26;
-
-    border-radius:50%;
-
-    transform:rotate(-8deg);
-
-    z-index:10;
-
-    filter:
-    drop-shadow(
-        0 5px 5px rgba(0,0,0,.25)
-    );
-}
-
-
-/* =================================
-   BOW STRING
-================================= */
-
-.bow-string{
-    position:absolute;
-
-    left:calc(15% + 104px);
-    bottom:14%;
-
-    width:3px;
-    height:170px;
-
-    background:#fff;
-
-    transform:none;
-
-    z-index:11;
-
-    box-shadow:
-    0 0 5px rgba(255,255,255,.8);
-}
-
-
-/* =================================
-   ARROW
-================================= */
-
-.arrow{
-    position:absolute;
-
-    width:155px;
-    height:7px;
-
-    background:
-    linear-gradient(
-        to right,
-        #75452b 0%,
-        #a8643d 78%,
-        #d8d8d8 79%,
-        #fff 100%
-    );
-
-    border-radius:10px;
-
-    transform-origin:
-    10px 50%;
-
-    z-index:30;
-
-    cursor:grab;
-
-    touch-action:none;
-
-    user-select:none;
-
-    -webkit-user-select:none;
-
-    box-shadow:
-    0 2px 5px rgba(0,0,0,.25);
-}
-
-
-/* Arrow head */
-
-.arrow::after{
-    content:"";
-
-    position:absolute;
-
-    right:-8px;
-    top:50%;
-
-    transform:translateY(-50%);
-
-    width:0;
-    height:0;
-
-    border-top:8px solid transparent;
-    border-bottom:8px solid transparent;
-
-    border-left:
-    15px solid #ddd;
-}
-
-
-/* Arrow feathers */
-
-.arrow::before{
-    content:"";
-
-    position:absolute;
-
-    left:8px;
-    top:50%;
-
-    width:20px;
-    height:11px;
-
-    transform:
-    translateY(-50%)
-    rotate(45deg);
-
-    background:#e85d75;
-
-    border-radius:
-    2px 8px 2px 8px;
-}
-
-
-/* =================================
-   HEART TARGET
-================================= */
-
-.target-heart{
-    position:absolute;
-
-    right:13%;
-    top:20%;
-
-    width:78px;
-    height:78px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #ff416c,
-        #ff1744,
-        #c51162
-    );
-
-    transform:rotate(-45deg);
-
-    border-radius:
-    18px 0 18px 18px;
-
-    z-index:15;
-
-    box-shadow:
-    0 0 15px rgba(255,65,108,.7),
-    0 0 35px rgba(255,65,108,.4);
-
-    transition:
-    transform .5s ease,
-    opacity .5s ease;
-}
-
-
-.target-heart::before,
-.target-heart::after{
-    content:"";
-
-    position:absolute;
-
-    width:78px;
-    height:78px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #ff416c,
-        #ff1744,
-        #c51162
-    );
-
-    border-radius:50%;
-}
-
-
-.target-heart::before{
-    top:-39px;
-    left:0;
-}
-
-
-.target-heart::after{
-    top:0;
-    left:39px;
-}
-
-
-.target-heart .shine{
-    position:absolute;
-
-    left:16px;
-    top:13px;
-
-    width:18px;
-    height:30px;
-
-    background:
-    rgba(255,255,255,.75);
-
-    border-radius:50%;
-
-    transform:rotate(45deg);
-
-    z-index:20;
-}
-
-
-/* =================================
-   AIM HELP
-================================= */
-
-.aim-help{
-    position:absolute;
-
-    left:0;
-    right:0;
-
-    bottom:7%;
-
-    font-size:16px;
-
-    z-index:50;
-
-    transition:opacity .3s ease;
-
-    text-shadow:
-    0 2px 5px rgba(0,0,0,.3);
-}
-
-
-/* =================================
-   BIRTHDAY TITLE
-================================= */
-
-.birthday-title{
-    position:absolute;
-
-    left:50%;
-    top:48%;
-
-    transform:
-    translate(-50%,-50%)
-    scale(.7);
-
-    width:100%;
-
-    opacity:0;
-
-    pointer-events:none;
-
-    z-index:60;
-
-    transition:
-    opacity 1s ease,
-    transform 1s ease;
-}
-
-
-.birthday-title.show{
-    opacity:1;
-
-    transform:
-    translate(-50%,-50%)
-    scale(1);
-}
-
-
-.birthday-title h1{
-    font-size:58px;
-
-    line-height:.95;
-
-    margin:10px 0;
-
-    text-shadow:
-    0 5px 20px rgba(0,0,0,.2);
-}
-
-
-.birthday-title h2{
-    font-size:30px;
-
-    color:#ff1744;
-}
-
-
-.small-title{
-    font-size:15px;
-
-    letter-spacing:2px;
-}
-
-
-/* =================================
-   TREE
-================================= */
-
-.tree{
-    position:absolute;
-
-    left:50%;
-    bottom:-30px;
-
-    width:180px;
-    height:230px;
-
-    transform:
-    translateX(-50%)
-    scale(0);
-
-    opacity:0;
-
-    transition:
-    transform 1.5s ease,
-    opacity 1.5s ease;
-
-    z-index:20;
-}
-
-
-.tree.grow{
-    transform:
-    translateX(-50%)
-    scale(1);
-
-    opacity:1;
-}
-
-
-.trunk{
-    position:absolute;
-
-    left:50%;
-    bottom:0;
-
-    width:22px;
-    height:120px;
-
-    transform:translateX(-50%);
-
-    background:#75452b;
-
-    border-radius:15px;
-}
-
-
-.branch{
-    position:absolute;
-
-    height:8px;
-
-    background:#75452b;
-
-    border-radius:10px;
-
-    transform-origin:left center;
-}
-
-
-.branch1{
-    width:80px;
-    left:50%;
-    bottom:80px;
-    transform:rotate(-35deg);
-}
-
-.branch2{
-    width:75px;
-    left:50%;
-    bottom:95px;
-    transform:rotate(35deg);
-}
-
-.branch3{
-    width:60px;
-    left:50%;
-    bottom:115px;
-    transform:rotate(-55deg);
-}
-
-.branch4{
-    width:60px;
-    left:50%;
-    bottom:125px;
-    transform:rotate(55deg);
-}
-
-
-.tree-heart{
-    position:absolute;
-
-    font-size:24px;
-
-    animation:
-    treeFloat 2s ease-in-out infinite;
-}
-
-
-.h1{left:15px;top:70px;}
-.h2{left:55px;top:35px;}
-.h3{left:100px;top:60px;}
-.h4{left:135px;top:90px;}
-.h5{left:40px;top:105px;}
-.h6{left:85px;top:15px;}
-.h7{left:120px;top:25px;}
-.h8{left:10px;top:30px;}
-.h9{left:150px;top:45px;}
-.h10{left:70px;top:80px;}
-.h11{left:110px;top:110px;}
-.h12{left:25px;top:125px;}
-
-
-@keyframes treeFloat{
-
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-7px);
-    }
-}
-
-
-/* =================================
-   CONTINUE BUTTON
-================================= */
-
-.continue-btn{
-    position:absolute;
-
-    left:50%;
-    bottom:5%;
-
-    transform:
-    translateX(-50%)
-    scale(.7);
-
-    opacity:0;
-
-    pointer-events:none;
-
-    padding:13px 30px;
-
-    border:none;
-
-    border-radius:30px;
-
-    background:#ff4081;
-
-    color:white;
-
-    font-size:18px;
-
-    cursor:pointer;
-
-    z-index:100;
-
-    transition:
-    opacity .5s ease,
-    transform .5s ease;
-}
-
-
-.continue-btn.show{
-    opacity:1;
-
-    pointer-events:auto;
-
-    transform:
-    translateX(-50%)
-    scale(1);
-}
-
-
-/* =================================
+/* =========================
    LOADER
-================================= */
+========================= */
 
 #loader{
+
     height:100vh;
 
     display:flex;
@@ -670,24 +42,27 @@ body{
     justify-content:center;
 
     align-items:center;
-
-    padding:20px;
 }
 
 
 #loader h1{
+
     font-size:38px;
+
     margin:10px;
 }
 
 
 #loader h2{
+
     font-size:24px;
+
     margin:10px;
 }
 
 
 #startBtn{
+
     padding:15px 35px;
 
     font-size:20px;
@@ -709,26 +84,32 @@ body{
 
 
 #startBtn:hover{
+
     transform:scale(1.05);
 }
 
 
-/* =================================
+
+/* =========================
    MAIN
-================================= */
+========================= */
 
 #main{
+
     padding:20px;
 }
 
 
 .title{
+
     font-size:42px;
+
     margin-top:20px;
 }
 
 
 .name{
+
     font-size:32px;
 
     margin:20px 0;
@@ -737,11 +118,13 @@ body{
 }
 
 
-/* =================================
+
+/* =========================
    SWIPE BOX
-================================= */
+========================= */
 
 .swipe-box{
+
     width:100%;
 
     max-width:420px;
@@ -751,23 +134,29 @@ body{
     padding:15px;
 
     background:
-    rgba(255,255,255,.18);
+    rgba(255,255,255,0.18);
 
     border:
     2px solid
-    rgba(255,255,255,.45);
+    rgba(255,255,255,0.45);
 
     border-radius:25px;
 
     box-shadow:
     0 0 20px
-    rgba(0,0,0,.25);
+    rgba(0,0,0,0.25);
 
     overflow:hidden;
 }
 
 
+
+/* =========================
+   SWIPE AREA
+========================= */
+
 .swipe-area{
+
     width:100%;
 
     min-height:280px;
@@ -786,33 +175,57 @@ body{
 }
 
 
+
+/* =========================
+   SWIPE TEXT
+========================= */
+
 .swipe-hint{
+
     font-size:24px;
 
     font-weight:500;
 
     animation:
-    swipeAnimation 1.5s infinite;
+    swipeAnimation
+    1.5s
+    infinite;
 }
 
 
 @keyframes swipeAnimation{
 
     0%{
-        transform:translateX(0);
+
+        transform:
+        translateX(0);
+
     }
 
     50%{
-        transform:translateX(15px);
+
+        transform:
+        translateX(15px);
+
     }
 
     100%{
-        transform:translateX(0);
+
+        transform:
+        translateX(0);
+
     }
+
 }
 
 
+
+/* =========================
+   HIDDEN PHOTO / VIDEO
+========================= */
+
 .hidden-content{
+
     display:none;
 
     width:100%;
@@ -827,31 +240,49 @@ body{
 
     box-shadow:
     0 0 15px
-    rgba(0,0,0,.25);
+    rgba(0,0,0,0.25);
 }
 
 
-.swipe-box.revealed .hidden-content{
+
+/* =========================
+   AFTER SWIPE
+========================= */
+
+.swipe-box.revealed
+.hidden-content{
+
     display:block;
 }
 
 
-.swipe-box.revealed .swipe-hint{
+.swipe-box.revealed
+.swipe-hint{
+
     display:none;
 }
 
 
+
+/* =========================
+   VIDEO
+========================= */
+
 video.hidden-content{
+
     width:100%;
+
     background:#000;
 }
 
 
-/* =================================
+
+/* =========================
    MESSAGE
-================================= */
+========================= */
 
 .msg{
+
     font-size:20px;
 
     max-width:700px;
@@ -864,9 +295,10 @@ video.hidden-content{
 }
 
 
-/* =================================
+
+/* =========================
    BUTTONS
-================================= */
+========================= */
 
 #giftBtn,
 #replyBtn{
@@ -901,116 +333,63 @@ video.hidden-content{
 
 
 .made{
+
     margin-top:20px;
 }
 
 
-/* =================================
+
+/* =========================
    MOBILE
-================================= */
+========================= */
 
 @media(max-width:600px){
 
-    #birthdayAnimation{
-        min-height:600px;
-    }
-
-    .wish-text{
-        top:7%;
-        font-size:20px;
-    }
-
-    .bow{
-        left:7%;
-
-        bottom:14%;
-
-        width:88px;
-        height:135px;
-
-        border-left-width:7px;
-    }
-
-    .bow-string{
-        left:calc(7% + 87px);
-
-        bottom:14%;
-
-        height:135px;
-    }
-
-    .arrow{
-        width:135px;
-        height:6px;
-    }
-
-    .target-heart{
-        right:10%;
-        top:22%;
-
-        width:62px;
-        height:62px;
-    }
-
-    .target-heart::before,
-    .target-heart::after{
-        width:62px;
-        height:62px;
-    }
-
-    .target-heart::before{
-        top:-31px;
-    }
-
-    .target-heart::after{
-        left:31px;
-    }
-
-    .birthday-title h1{
-        font-size:43px;
-    }
-
-    .birthday-title h2{
-        font-size:25px;
-    }
-
-    .aim-help{
-        bottom:6%;
-
-        font-size:14px;
-
-        padding:0 15px;
-    }
-
     #loader h1{
+
         font-size:30px;
     }
 
+
     #loader h2{
+
         font-size:21px;
     }
 
+
     .title{
+
         font-size:32px;
     }
 
+
     .name{
+
         font-size:26px;
     }
 
+
     .msg{
+
         font-size:18px;
     }
 
+
     .swipe-box{
+
         max-width:95%;
     }
 
+
     .swipe-area{
+
         min-height:240px;
     }
 
+
     .hidden-content{
+
         max-width:100%;
     }
+
 }
