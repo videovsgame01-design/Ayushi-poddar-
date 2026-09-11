@@ -30,9 +30,6 @@
     text-align:center;
 }
 
-
-/* WISH */
-
 .wish-text{
     position:absolute;
     top:7%;
@@ -45,11 +42,6 @@
     opacity:.75;
 }
 
-
-/* ================================
-   GLOSSY HEART
-================================ */
-
 .target-heart{
     position:absolute;
     top:14%;
@@ -57,9 +49,7 @@
     width:92px;
     height:82px;
     z-index:15;
-
     transform:rotate(-45deg);
-
     background:linear-gradient(
         135deg,
         #ffb0c4 0%,
@@ -67,18 +57,12 @@
         #ed245b 75%,
         #c8144b 100%
     );
-
     border-radius:18px 0 18px 18px;
-
     filter:
         drop-shadow(0 8px 15px rgba(205,35,90,.28))
         drop-shadow(0 0 15px rgba(255,90,140,.35));
-
     animation:heartFloat 2s ease-in-out infinite;
 }
-
-
-/* heart upper circles */
 
 .target-heart:before,
 .target-heart:after{
@@ -100,9 +84,6 @@
     left:43px;
 }
 
-
-/* glossy shine */
-
 .target-heart .shine{
     position:absolute;
     width:23px;
@@ -115,9 +96,7 @@
     z-index:5;
 }
 
-
 @keyframes heartFloat{
-
     0%,100%{
         transform:rotate(-45deg) translateY(0);
     }
@@ -127,105 +106,67 @@
     }
 }
 
-
-/* ================================
-   AIM AREA
-================================ */
-
 .aim-area{
     position:absolute;
     inset:0;
     touch-action:none;
 }
 
-
-/* ================================
-   ARROW
-================================ */
-
 .arrow{
     position:absolute;
     left:25%;
     bottom:25%;
-
     width:155px;
     height:5px;
-
     background:linear-gradient(
         to right,
         #4d2933,
         #7b4050
     );
-
     border-radius:10px;
-
     transform-origin:10px 50%;
     transform:rotate(-25deg);
-
     z-index:20;
-
     cursor:grab;
     touch-action:none;
-
     box-shadow:0 2px 5px rgba(0,0,0,.18);
 }
-
-
-/* arrow head */
 
 .arrow:after{
     content:"";
     position:absolute;
     right:-20px;
     top:-8px;
-
     width:0;
     height:0;
-
     border-top:10px solid transparent;
     border-bottom:10px solid transparent;
     border-left:23px solid #5b3040;
 }
-
-
-/* feathers */
 
 .arrow:before{
     content:"";
     position:absolute;
     left:0;
     top:-7px;
-
     width:24px;
     height:18px;
-
     border-top:3px solid #b26b7d;
     border-bottom:3px solid #b26b7d;
-
     border-radius:50%;
 }
-
-
-/* ================================
-   BOW
-================================ */
 
 .bow{
     position:absolute;
     left:18%;
     bottom:9%;
-
     width:105px;
     height:145px;
-
     border-left:7px solid #633442;
     border-radius:50%;
-
     transform:rotate(-18deg);
-
     z-index:12;
 }
-
 
 .bow:after{
     content:"";
@@ -234,53 +175,34 @@
     height:7px;
     background:#633442;
     border-radius:10px;
-
     left:-10px;
     top:50%;
-
     transform:rotate(18deg);
 }
-
-
-/* bow string */
 
 .bow-string{
     position:absolute;
     left:24%;
     bottom:10%;
-
     width:2px;
     height:135px;
-
     background:#70404c;
-
     transform:rotate(-18deg);
-
     z-index:13;
 }
-
-
-/* ================================
-   HELP
-================================ */
 
 .aim-help{
     position:absolute;
     left:0;
     right:0;
     bottom:20%;
-
     font-size:15px;
     color:#754e5a;
-
     opacity:.7;
-
     animation:helpPulse 1.5s infinite;
 }
 
-
 @keyframes helpPulse{
-
     0%,100%{
         opacity:.4;
     }
@@ -290,18 +212,11 @@
     }
 }
 
-
-/* ================================
-   HEART HIT
-================================ */
-
 .hit-heart{
     animation:heartHit .8s ease forwards !important;
 }
 
-
 @keyframes heartHit{
-
     0%{
         transform:rotate(-45deg) scale(1);
     }
@@ -320,38 +235,23 @@
     }
 }
 
-
-/* ================================
-   HAPPY BIRTHDAY
-================================ */
-
 .birthday-title{
     position:absolute;
-
     left:50%;
     top:27%;
-
     width:100%;
-
     transform:translateX(-50%) scale(.5);
-
     opacity:0;
-
     font-family:Georgia,serif;
-
     color:#b63861;
-
     transition:all 1.5s ease;
-
     z-index:25;
 }
-
 
 .birthday-title.show{
     opacity:1;
     transform:translateX(-50%) scale(1);
 }
-
 
 .birthday-title .small-title{
     font-size:18px;
@@ -359,91 +259,56 @@
     color:#79515c;
 }
 
-
 .birthday-title h1{
     margin:10px 0;
-
     font-size:clamp(44px,10vw,82px);
-
     line-height:.92;
 }
 
-
 .birthday-title h2{
     margin:12px 0;
-
     font-size:clamp(25px,6vw,46px);
-
     font-weight:500;
 }
 
-
-/* ================================
-   TREE
-================================ */
-
 .tree{
     position:absolute;
-
     right:8%;
     bottom:-10px;
-
     width:190px;
     height:0;
-
     transition:height 2.5s ease;
-
     z-index:5;
 }
-
 
 .tree.grow{
     height:58%;
 }
 
-
-/* TRUNK */
-
 .trunk{
     position:absolute;
-
     bottom:0;
     left:50%;
-
     width:25px;
     height:100%;
-
     background:#603844;
-
     border-radius:50% 50% 8px 8px;
-
     transform:translateX(-50%);
 }
 
-
-/* BRANCHES */
-
 .branch{
     position:absolute;
-
     height:13px;
-
     background:#603844;
-
     border-radius:20px;
-
     transform-origin:left center;
-
     opacity:0;
-
     transition:opacity 1s;
 }
-
 
 .tree.grow .branch{
     opacity:1;
 }
-
 
 .branch1{
     width:105px;
@@ -452,14 +317,12 @@
     transform:rotate(-38deg);
 }
 
-
 .branch2{
     width:95px;
     left:50%;
     top:36%;
     transform:rotate(38deg);
 }
-
 
 .branch3{
     width:75px;
@@ -468,7 +331,6 @@
     transform:rotate(-62deg);
 }
 
-
 .branch4{
     width:80px;
     left:52%;
@@ -476,33 +338,21 @@
     transform:rotate(62deg);
 }
 
-
-/* ================================
-   TREE HEARTS
-================================ */
-
 .tree-heart{
     position:absolute;
-
     font-size:25px;
-
     opacity:0;
-
     transform:scale(0);
-
     transition:
         opacity .5s ease,
         transform .5s ease;
-
     z-index:10;
 }
-
 
 .tree.grow .tree-heart{
     opacity:1;
     transform:scale(1);
 }
-
 
 .h1{left:10%;top:8%;}
 .h2{left:45%;top:2%;}
@@ -517,45 +367,25 @@
 .h11{left:54%;top:57%;}
 .h12{left:84%;top:57%;}
 
-
-/* ================================
-   CONTINUE
-================================ */
-
 .continue-btn{
     position:absolute;
-
     bottom:5%;
     left:50%;
-
     transform:translateX(-50%);
-
     padding:12px 27px;
-
     border:none;
     border-radius:30px;
-
     background:#b63861;
     color:white;
-
     font-size:17px;
-
     opacity:0;
-
     transition:opacity 1s;
-
     z-index:30;
 }
-
 
 .continue-btn.show{
     opacity:1;
 }
-
-
-/* ================================
-   MOBILE
-================================ */
 
 @media(max-width:600px){
 
@@ -629,82 +459,54 @@
     .tree.grow{
         height:48%;
     }
-
 }
-
-
-/* ================================
-   ORIGINAL PASSWORD CENTER
-================================ */
 
 #passwordScreen{
     min-height:100vh;
-
     display:flex;
     flex-direction:column;
-
     justify-content:center;
     align-items:center;
-
     text-align:center;
-
     padding:25px;
 }
-
 
 #passwordScreen h1{
     margin-bottom:15px;
 }
 
-
 #passwordScreen h2{
     margin-bottom:15px;
 }
 
-
 #passwordInput{
     padding:13px 18px;
-
     border:none;
     outline:none;
-
     border-radius:25px;
-
     font-size:17px;
-
     text-align:center;
 }
 
-
 #passwordBtn{
     margin-top:15px;
-
     padding:13px 28px;
-
     border:none;
     border-radius:25px;
-
     background:#ff4081;
-
     color:white;
-
     font-size:17px;
-
     cursor:pointer;
 }
-
 
 #passwordError{
     margin-top:10px;
 }
 
 </style>
-
 </head>
 
-
 <body>
-
 
 <!-- PASSWORD -->
 
@@ -739,15 +541,9 @@
         make a wish...
     </div>
 
-
-    <div
-        id="targetHeart"
-        class="target-heart">
-
+    <div id="targetHeart" class="target-heart">
         <span class="shine"></span>
-
     </div>
-
 
     <div class="aim-area">
 
@@ -763,10 +559,7 @@
 
     </div>
 
-
-    <div
-        id="birthdayTitle"
-        class="birthday-title">
+    <div id="birthdayTitle" class="birthday-title">
 
         <div class="small-title">
             and... make it count
@@ -814,12 +607,8 @@
     </div>
 
 
-    <button
-        id="continueBtn"
-        class="continue-btn">
-
+    <button id="continueBtn" class="continue-btn">
         Continue ❤️
-
     </button>
 
 </div>
@@ -890,4 +679,14 @@
     <div class="swipe-box">
         <div class="swipe-area">
             <div class="swipe-hint">👆 Swipe</div>
-            <img src="photo 4.jpg
+            <img src="photo 4.jpg" class="hidden-content">
+        </div>
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
