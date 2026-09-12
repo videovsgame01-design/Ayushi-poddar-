@@ -1,201 +1,220 @@
-window.addEventListener("DOMContentLoaded", function () {
-
-    const passwordScreen =
-        document.getElementById("passwordScreen");
-
-    const passwordInput =
-        document.getElementById("passwordInput");
-
-    const passwordBtn =
-        document.getElementById("passwordBtn");
-
-    const passwordError =
-        document.getElementById("passwordError");
-
-    const loader =
-        document.getElementById("loader");
-
-    const startBtn =
-        document.getElementById("startBtn");
-
-    const main =
-        document.getElementById("main");
-
-    const music =
-        document.getElementById("music");
-
-
-    /* =========================
-       INITIAL SCREEN
-    ========================= */
-
-    if (loader) {
-        loader.style.display = "none";
-    }
-
-    if (main) {
-        main.style.display = "none";
-    }
-
-
-    /* =========================
-       PASSWORD
-    ========================= */
-
-    function unlockWebsite() {
-
-        if (!passwordInput) return;
-
-        if (passwordInput.value === "5121314") {
-
-            if (passwordError) {
-                passwordError.textContent = "";
-            }
-
-            if (passwordScreen) {
-                passwordScreen.style.display = "none";
-            }
-
-            if (loader) {
-                loader.style.display = "flex";
-            }
-
-        } else {
-
-            if (passwordError) {
-                passwordError.textContent =
-                    "❌ Wrong Password ❤️";
-            }
-
-            passwordInput.value = "";
-            passwordInput.focus();
-        }
-    }
-
-
-    if (passwordBtn) {
-
-        passwordBtn.addEventListener(
-            "click",
-            unlockWebsite
-        );
-
-    }
-
-
-    if (passwordInput) {
-
-        passwordInput.addEventListener(
-            "keydown",
-            function (event) {
-
-                if (event.key === "Enter") {
-                    unlockWebsite();
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =========================
-       OPEN SURPRISE
-    ========================= */
-
-    if (startBtn) {
-
-        startBtn.addEventListener(
-            "click",
-            function () {
-
-                if (loader) {
-                    loader.style.display = "none";
-                }
-
-                if (main) {
-                    main.style.display = "block";
-                }
-
-                if (music) {
-
-                    music.play().catch(
-                        function () {}
-                    );
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =========================
-       SWIPE PHOTO / VIDEO
-    ========================= */
-
-    const boxes =
-        document.querySelectorAll(".swipe-box");
-
-
-    boxes.forEach(function (box) {
-
-        let startX = 0;
-        let startY = 0;
-
-
-        box.addEventListener(
-            "touchstart",
-            function (event) {
-
-                startX =
-                    event.touches[0].clientX;
-
-                startY =
-                    event.touches[0].clientY;
-
-            },
-            { passive: true }
-        );
-
-
-        box.addEventListener(
-            "touchend",
-            function (event) {
-
-                const endX =
-                    event.changedTouches[0].clientX;
-
-                const endY =
-                    event.changedTouches[0].clientY;
-
-
-                const differenceX =
-                    endX - startX;
-
-                const differenceY =
-                    endY - startY;
-
-
-                /* Horizontal swipe */
-
-                if (
-                    Math.abs(differenceX) > 50 &&
-                    Math.abs(differenceX) >
-                    Math.abs(differenceY)
-                ) {
-
-                    box.classList.add(
-                        "revealed"
-                    );
-
-                }
-
-            },
-            { passive: true }
-        );
-
-    });
-
-});
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fad0c4);
+min-height:100vh;
+overflow-x:hidden;
+text-align:center;
+color:#fff;
+}
+
+/* LOADER */
+
+#loader{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+#loader h1{
+font-size:38px;
+margin:10px;
+}
+
+#loader h2{
+font-size:24px;
+margin:10px;
+}
+
+#startBtn{
+padding:15px 35px;
+font-size:20px;
+border:none;
+border-radius:30px;
+background:#ff4081;
+color:white;
+cursor:pointer;
+margin-top:25px;
+transition:.3s;
+}
+
+#startBtn:hover{
+transform:scale(1.05);
+}
+
+/* MAIN */
+
+#main{
+padding:20px;
+}
+
+.title{
+font-size:42px;
+margin-top:20px;
+}
+
+.name{
+font-size:32px;
+margin:20px 0;
+color:yellow;
+}
+
+/* SWIPE BOX */
+
+.swipe-box{
+width:100%;
+max-width:420px;
+margin:25px auto;
+padding:15px;
+background:rgba(255,255,255,0.18);
+border:2px solid rgba(255,255,255,0.45);
+border-radius:25px;
+box-shadow:0 0 20px rgba(0,0,0,0.25);
+overflow:hidden;
+}
+
+/* SWIPE AREA */
+
+.swipe-area{
+width:100%;
+min-height:280px;
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+touch-action:pan-y;
+user-select:none;
+}
+
+/* SWIPE HINT */
+
+.swipe-hint{
+font-size:24px;
+font-weight:500;
+animation:swipeAnimation 1.5s infinite;
+}
+
+@keyframes swipeAnimation{
+
+0%{
+transform:translateX(0);
+}
+
+50%{
+transform:translateX(15px);
+}
+
+100%{
+transform:translateX(0);
+}
+
+}
+
+/* HIDDEN PHOTO / VIDEO */
+
+.hidden-content{
+display:none;
+width:100%;
+max-width:380px;
+max-height:500px;
+object-fit:contain;
+border-radius:18px;
+box-shadow:0 0 15px rgba(0,0,0,0.25);
+}
+
+/* AFTER SWIPE */
+
+.swipe-box.revealed .hidden-content{
+display:block;
+}
+
+.swipe-box.revealed .swipe-hint{
+display:none;
+}
+
+/* VIDEO */
+
+video.hidden-content{
+width:100%;
+background:#000;
+}
+
+/* MESSAGE */
+
+.msg{
+font-size:20px;
+max-width:700px;
+margin:20px auto;
+line-height:1.8;
+padding:0 20px;
+}
+
+/* BUTTONS */
+
+#giftBtn,
+#replyBtn{
+padding:15px 35px;
+font-size:20px;
+border:none;
+border-radius:30px;
+background:#ff4081;
+color:#fff;
+cursor:pointer;
+margin:15px 5px;
+transition:.3s;
+}
+
+#giftBtn:hover,
+#replyBtn:hover{
+transform:scale(1.05);
+background:#e91e63;
+}
+
+.made{
+margin-top:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+#loader h1{
+font-size:30px;
+}
+
+#loader h2{
+font-size:21px;
+}
+
+.title{
+font-size:32px;
+}
+
+.name{
+font-size:26px;
+}
+
+.msg{
+font-size:18px;
+}
+
+.swipe-box{
+max-width:95%;
+}
+
+.swipe-area{
+min-height:240px;
+}
+
+.hidden-content{
+max-width:100%;
+}
+
+}
