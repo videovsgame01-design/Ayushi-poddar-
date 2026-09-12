@@ -1,11 +1,41 @@
 window.onload = function () {
 
+    const passwordScreen = document.getElementById("passwordScreen");
+    const passwordInput = document.getElementById("passwordInput");
+    const passwordBtn = document.getElementById("passwordBtn");
+    const passwordError = document.getElementById("passwordError");
+
     const loader = document.getElementById("loader");
     const main = document.getElementById("main");
     const startBtn = document.getElementById("startBtn");
     const music = document.getElementById("music");
 
     main.style.display = "none";
+    loader.style.display = "none";
+
+    // =========================
+    // PASSWORD SYSTEM
+    // =========================
+
+    passwordBtn.addEventListener("click", function () {
+
+        if (passwordInput.value === "5121314") {
+
+            passwordScreen.style.display = "none";
+            loader.style.display = "flex";
+
+        } else {
+
+            passwordError.innerText = "❌ Wrong Password";
+
+        }
+
+    });
+
+
+    // =========================
+    // LOADER
+    // =========================
 
     startBtn.addEventListener("click", function () {
 
