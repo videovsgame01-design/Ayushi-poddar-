@@ -1,646 +1,164 @@
-<!DOCTYPE html>  <html lang="en">  <head>  
-<meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Happy Birthday Ayushi ❤️</title>  <link rel="stylesheet" href="style.css">  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">  <style>  
-  
-/* ================================  
-   BIRTHDAY ANIMATION  
-================================ */  
-  
-#birthdayAnimation{  
-    display:none;  
-    position:fixed;  
-    inset:0;  
-    z-index:99999;  
-    overflow:hidden;  
-    background:  
-        radial-gradient(circle at 80% 20%,rgba(255,190,205,.35),transparent 30%),  
-        linear-gradient(135deg,#fff8f0,#ffe9e5,#fff5ee);  
-    color:#5b3440;  
-    text-align:center;  
-}  
-  
-.wish-text{  
-    position:absolute;  
-    top:7%;  
-    left:0;  
-    right:0;  
-    font-family:Georgia,serif;  
-    font-style:italic;  
-    font-size:19px;  
-    color:#815d67;  
-    opacity:.75;  
-}  
-  
-.target-heart{  
-    position:absolute;  
-    top:14%;  
-    right:15%;  
-    width:92px;  
-    height:82px;  
-    z-index:15;  
-    transform:rotate(-45deg);  
-    background:linear-gradient(  
-        135deg,  
-        #ffb0c4 0%,  
-        #ff5d87 35%,  
-        #ed245b 75%,  
-        #c8144b 100%  
-    );  
-    border-radius:18px 0 18px 18px;  
-    filter:  
-        drop-shadow(0 8px 15px rgba(205,35,90,.28))  
-        drop-shadow(0 0 15px rgba(255,90,140,.35));  
-    animation:heartFloat 2s ease-in-out infinite;  
-}  
-  
-.target-heart:before,  
-.target-heart:after{  
-    content:"";  
-    position:absolute;  
-    width:92px;  
-    height:82px;  
-    border-radius:50%;  
-    background:inherit;  
-}  
-  
-.target-heart:before{  
-    top:-43px;  
-    left:0;  
-}  
-  
-.target-heart:after{  
-    top:0;  
-    left:43px;  
-}  
-  
-.target-heart .shine{  
-    position:absolute;  
-    width:23px;  
-    height:11px;  
-    border-radius:50%;  
-    background:rgba(255,255,255,.75);  
-    transform:rotate(45deg);  
-    top:-7px;  
-    left:26px;  
-    z-index:5;  
-}  
-  
-@keyframes heartFloat{  
-    0%,100%{  
-        transform:rotate(-45deg) translateY(0);  
-    }  
-  
-    50%{  
-        transform:rotate(-45deg) translateY(-9px);  
-    }  
-}  
-  
-.aim-area{  
-    position:absolute;  
-    inset:0;  
-    touch-action:none;  
-}  
-  
-.arrow{  
-    position:absolute;  
-    left:25%;  
-    bottom:25%;  
-    width:155px;  
-    height:5px;  
-    background:linear-gradient(  
-        to right,  
-        #4d2933,  
-        #7b4050  
-    );  
-    border-radius:10px;  
-    transform-origin:10px 50%;  
-    transform:rotate(-25deg);  
-    z-index:20;  
-    cursor:grab;  
-    touch-action:none;  
-    box-shadow:0 2px 5px rgba(0,0,0,.18);  
-}  
-  
-.arrow:after{  
-    content:"";  
-    position:absolute;  
-    right:-20px;  
-    top:-8px;  
-    width:0;  
-    height:0;  
-    border-top:10px solid transparent;  
-    border-bottom:10px solid transparent;  
-    border-left:23px solid #5b3040;  
-}  
-  
-.arrow:before{  
-    content:"";  
-    position:absolute;  
-    left:0;  
-    top:-7px;  
-    width:24px;  
-    height:18px;  
-    border-top:3px solid #b26b7d;  
-    border-bottom:3px solid #b26b7d;  
-    border-radius:50%;  
-}  
-  
-.bow{  
-    position:absolute;  
-    left:18%;  
-    bottom:9%;  
-    width:105px;  
-    height:145px;  
-    border-left:7px solid #633442;  
-    border-radius:50%;  
-    transform:rotate(-18deg);  
-    z-index:12;  
-}  
-  
-.bow:after{  
-    content:"";  
-    position:absolute;  
-    width:115px;  
-    height:7px;  
-    background:#633442;  
-    border-radius:10px;  
-    left:-10px;  
-    top:50%;  
-    transform:rotate(18deg);  
-}  
-  
-.bow-string{  
-    position:absolute;  
-    left:24%;  
-    bottom:10%;  
-    width:2px;  
-    height:135px;  
-    background:#70404c;  
-    transform:rotate(-18deg);  
-    z-index:13;  
-}  
-  
-.aim-help{  
-    position:absolute;  
-    left:0;  
-    right:0;  
-    bottom:20%;  
-    font-size:15px;  
-    color:#754e5a;  
-    opacity:.7;  
-    animation:helpPulse 1.5s infinite;  
-}  
-  
-@keyframes helpPulse{  
-    0%,100%{  
-        opacity:.4;  
-    }  
-  
-    50%{  
-        opacity:1;  
-    }  
-}  
-  
-.hit-heart{  
-    animation:heartHit .8s ease forwards !important;  
-}  
-  
-@keyframes heartHit{  
-    0%{  
-        transform:rotate(-45deg) scale(1);  
-    }  
-  
-    35%{  
-        transform:rotate(-45deg) scale(1.3);  
-    }  
-  
-    65%{  
-        transform:rotate(-45deg) scale(.9);  
-    }  
-  
-    100%{  
-        transform:rotate(-45deg) scale(0);  
-        opacity:0;  
-    }  
-}  
-  
-.birthday-title{  
-    position:absolute;  
-    left:50%;  
-    top:27%;  
-    width:100%;  
-    transform:translateX(-50%) scale(.5);  
-    opacity:0;  
-    font-family:Georgia,serif;  
-    color:#b63861;  
-    transition:all 1.5s ease;  
-    z-index:25;  
-}  
-  
-.birthday-title.show{  
-    opacity:1;  
-    transform:translateX(-50%) scale(1);  
-}  
-  
-.birthday-title .small-title{  
-    font-size:18px;  
-    font-style:italic;  
-    color:#79515c;  
-}  
-  
-.birthday-title h1{  
-    margin:10px 0;  
-    font-size:clamp(44px,10vw,82px);  
-    line-height:.92;  
-}  
-  
-.birthday-title h2{  
-    margin:12px 0;  
-    font-size:clamp(25px,6vw,46px);  
-    font-weight:500;  
-}  
-  
-.tree{  
-    position:absolute;  
-    right:8%;  
-    bottom:-10px;  
-    width:190px;  
-    height:0;  
-    transition:height 2.5s ease;  
-    z-index:5;  
-}  
-  
-.tree.grow{  
-    height:58%;  
-}  
-  
-.trunk{  
-    position:absolute;  
-    bottom:0;  
-    left:50%;  
-    width:25px;  
-    height:100%;  
-    background:#603844;  
-    border-radius:50% 50% 8px 8px;  
-    transform:translateX(-50%);  
-}  
-  
-.branch{  
-    position:absolute;  
-    height:13px;  
-    background:#603844;  
-    border-radius:20px;  
-    transform-origin:left center;  
-    opacity:0;  
-    transition:opacity 1s;  
-}  
-  
-.tree.grow .branch{  
-    opacity:1;  
-}  
-  
-.branch1{  
-    width:105px;  
-    left:50%;  
-    top:25%;  
-    transform:rotate(-38deg);  
-}  
-  
-.branch2{  
-    width:95px;  
-    left:50%;  
-    top:36%;  
-    transform:rotate(38deg);  
-}  
-  
-.branch3{  
-    width:75px;  
-    left:48%;  
-    top:15%;  
-    transform:rotate(-62deg);  
-}  
-  
-.branch4{  
-    width:80px;  
-    left:52%;  
-    top:18%;  
-    transform:rotate(62deg);  
-}  
-  
-.tree-heart{  
-    position:absolute;  
-    font-size:25px;  
-    opacity:0;  
-    transform:scale(0);  
-    transition:  
-        opacity .5s ease,  
-        transform .5s ease;  
-    z-index:10;  
-}  
-  
-.tree.grow .tree-heart{  
-    opacity:1;  
-    transform:scale(1);  
-}  
-  
-.h1{left:10%;top:8%;}  
-.h2{left:45%;top:2%;}  
-.h3{left:76%;top:13%;}  
-.h4{left:23%;top:27%;}  
-.h5{left:59%;top:24%;}  
-.h6{left:83%;top:34%;}  
-.h7{left:5%;top:42%;}  
-.h8{left:40%;top:41%;}  
-.h9{left:70%;top:47%;}  
-.h10{left:28%;top:54%;}  
-.h11{left:54%;top:57%;}  
-.h12{left:84%;top:57%;}  
-  
-.continue-btn{  
-    position:absolute;  
-    bottom:5%;  
-    left:50%;  
-    transform:translateX(-50%);  
-    padding:12px 27px;  
-    border:none;  
-    border-radius:30px;  
-    background:#b63861;  
-    color:white;  
-    font-size:17px;  
-    opacity:0;  
-    transition:opacity 1s;  
-    z-index:30;  
-}  
-  
-.continue-btn.show{  
-    opacity:1;  
-}  
-  
-@media(max-width:600px){  
-  
-    .wish-text{  
-        top:7%;  
-        font-size:17px;  
-    }  
-  
-    .target-heart{  
-        top:17%;  
-        right:13%;  
-        width:70px;  
-        height:63px;  
-    }  
-  
-    .target-heart:before,  
-    .target-heart:after{  
-        width:70px;  
-        height:63px;  
-    }  
-  
-    .target-heart:before{  
-        top:-33px;  
-    }  
-  
-    .target-heart:after{  
-        left:33px;  
-    }  
-  
-    .arrow{  
-        left:17%;  
-        bottom:27%;  
-        width:130px;  
-    }  
-  
-    .bow{  
-        left:10%;  
-        bottom:9%;  
-        width:90px;  
-        height:125px;  
-    }  
-  
-    .bow-string{  
-        left:17%;  
-        bottom:10%;  
-        height:115px;  
-    }  
-  
-    .aim-help{  
-        bottom:22%;  
-        font-size:14px;  
-    }  
-  
-    .birthday-title{  
-        top:25%;  
-    }  
-  
-    .birthday-title h1{  
-        font-size:48px;  
-    }  
-  
-    .birthday-title h2{  
-        font-size:28px;  
-    }  
-  
-    .tree{  
-        right:2%;  
-        width:150px;  
-    }  
-  
-    .tree.grow{  
-        height:48%;  
-    }  
-}  
-  
-#passwordScreen{  
-    min-height:100vh;  
-    display:flex;  
-    flex-direction:column;  
-    justify-content:center;  
-    align-items:center;  
-    text-align:center;  
-    padding:25px;  
-}  
-  
-#passwordScreen h1{  
-    margin-bottom:15px;  
-}  
-  
-#passwordScreen h2{  
-    margin-bottom:15px;  
-}  
-  
-#passwordInput{  
-    padding:13px 18px;  
-    border:none;  
-    outline:none;  
-    border-radius:25px;  
-    font-size:17px;  
-    text-align:center;  
-}  
-  
-#passwordBtn{  
-    margin-top:15px;  
-    padding:13px 28px;  
-    border:none;  
-    border-radius:25px;  
-    background:#ff4081;  
-    color:white;  
-    font-size:17px;  
-    cursor:pointer;  
-}  
-  
-#passwordError{  
-    margin-top:10px;  
-}  
-  
-</style>  </head>  <body>  <!-- PASSWORD -->  <div id="passwordScreen">  <h1>🔐 Secret Surprise 🔐</h1>  
+<!DOCTYPE html>
+<html lang="en">
 
-<h2>Enter Password ❤️</h2>  
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<input  
-    type="password"  
-    id="passwordInput"  
-    placeholder="Enter Password"  
->  
+<title>Happy Birthday Ayushi ❤️</title>
 
-<br>  
+<link rel="stylesheet" href="style.css">
 
-<button id="passwordBtn">  
-    Unlock 🎁  
-</button>  
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-<p id="passwordError"></p>
+<style>
 
-</div>  <!-- BIRTHDAY ANIMATION -->  <div id="birthdayAnimation">  <div class="wish-text">  
-    make a wish...  
-</div>  
+#passwordScreen{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:25px;
+}
 
-<div id="targetHeart" class="target-heart">  
-    <span class="shine"></span>  
-</div>  
+#passwordScreen h1{
+    margin-bottom:15px;
+}
 
-<div class="aim-area">  
+#passwordScreen h2{
+    margin-bottom:15px;
+}
 
-    <div id="arrow" class="arrow"></div>  
+#passwordInput{
+    padding:13px 18px;
+    border:none;
+    outline:none;
+    border-radius:25px;
+    font-size:17px;
+    text-align:center;
+}
 
-    <div class="bow"></div>  
+#passwordBtn{
+    margin-top:15px;
+    padding:13px 28px;
+    border:none;
+    border-radius:25px;
+    background:#ff4081;
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+}
 
-    <div class="bow-string"></div>  
+#passwordError{
+    margin-top:10px;
+}
 
-    <div class="aim-help">  
-        👆 Teer ko drag karke ❤️ par aim karo  
-    </div>  
+</style>
 
-</div>  
+</head>
 
-<div id="birthdayTitle" class="birthday-title">  
+<body>
 
-    <div class="small-title">  
-        and... make it count  
-    </div>  
+<!-- PASSWORD -->
 
-    <h1>  
-        Happy<br>Birthday  
-    </h1>  
+<div id="passwordScreen">
 
-    <h2>  
-        Ayushi ❤️  
-    </h2>  
+    <h1>🔐 Secret Surprise 🔐</h1>
 
-    <div class="small-title">  
-        here's to a year that blooms  
-    </div>  
+    <h2>Enter Password ❤️</h2>
 
-</div>  
+    <input
+        type="password"
+        id="passwordInput"
+        placeholder="Enter Password"
+    >
 
+    <br>
 
-<!-- TREE -->  
+    <button id="passwordBtn">
+        Unlock 🎁
+    </button>
 
-<div id="tree" class="tree">  
+    <p id="passwordError"></p>
 
-    <div class="trunk"></div>  
-
-    <div class="branch branch1"></div>  
-    <div class="branch branch2"></div>  
-    <div class="branch branch3"></div>  
-    <div class="branch branch4"></div>  
-
-    <span class="tree-heart h1">❤️</span>  
-    <span class="tree-heart h2">🩷</span>  
-    <span class="tree-heart h3">🧡</span>  
-    <span class="tree-heart h4">❤️</span>  
-    <span class="tree-heart h5">💛</span>  
-    <span class="tree-heart h6">🩷</span>  
-    <span class="tree-heart h7">💜</span>  
-    <span class="tree-heart h8">🩷</span>  
-    <span class="tree-heart h9">🧡</span>  
-    <span class="tree-heart h10">❤️</span>  
-    <span class="tree-heart h11">💙</span>  
-    <span class="tree-heart h12">💛</span>  
-
-</div>  
-
-
-<button id="continueBtn" class="continue-btn">  
-    Continue ❤️  
-</button>
-
-</div>  <!-- EXISTING LOADER -->  <div id="loader" style="display:none;">  <h1>🎁 A Special Surprise 🎁</h1>  
-
-<h2>For</h2>  
-
-<h1>Ayushi Poddar ❤️</h1>  
-
-<button id="startBtn">  
-    Open Surprise 🎉  
-</button>
-
-</div>  <!-- MAIN -->  <div id="main" style="display:none;">  <h1 class="title">  
-    🎂 Happy Birthday 🎂  
-</h1>  
-
-<h2 class="name">  
-    AYUSHI PODDAR  
-</h2>  
-
-
-<div class="swipe-box">  
-    <div class="swipe-area">  
-        <div class="swipe-hint">👆 Swipe</div>  
-        <img src="IMG-20260308-WA0001.jpg" class="hidden-content">  
-    </div>  
-</div>  
-
-
-<div class="swipe-box">  
-    <div class="swipe-area">  
-        <div class="swipe-hint">👆 Swipe</div>  
-        <img src="photo 1.png" class="hidden-content">  
-    </div>  
-</div>  
-
-
-<div class="swipe-box">  
-    <div class="swipe-area">  
-        <div class="swipe-hint">👆 Swipe</div>  
-        <img src="photo 2.png" class="hidden-content">  
-    </div>  
-</div>  
-
-
-<div class="swipe-box">  
-    <div class="swipe-area">  
-        <div class="swipe-hint">👆 Swipe</div>  
-        <img src="photo 3.jpg" class="hidden-content">  
-    </div>  
-</div>  
-
-
-<div class="swipe-box">  
-    <div class="swipe-area">  
-        <div class="swipe-hint">👆 Swipe</div>  
-        <img src="photo 4.jpg" class="hidden-content">  
-    </div>  
 </div>
 
-</div>  <script src="script.js"></script>  </body>  
+
+<!-- LOADER -->
+
+<div id="loader" style="display:none;">
+
+    <h1>🎁 A Special Surprise 🎁</h1>
+
+    <h2>For</h2>
+
+    <h1>Ayushi Poddar ❤️</h1>
+
+    <button id="startBtn">
+        Open Surprise 🎉
+    </button>
+
+</div>
+
+
+<!-- MAIN -->
+
+<div id="main" style="display:none;">
+
+    <h1 class="title">
+        🎂 Happy Birthday 🎂
+    </h1>
+
+    <h2 class="name">
+        AYUSHI PODDAR
+    </h2>
+
+
+    <div class="swipe-box">
+        <div class="swipe-area">
+            <div class="swipe-hint">👆 Swipe</div>
+            <img src="IMG-20260308-WA0001.jpg" class="hidden-content">
+        </div>
+    </div>
+
+
+    <div class="swipe-box">
+        <div class="swipe-area">
+            <div class="swipe-hint">👆 Swipe</div>
+            <img src="photo 1.png" class="hidden-content">
+        </div>
+    </div>
+
+
+    <div class="swipe-box">
+        <div class="swipe-area">
+            <div class="swipe-hint">👆 Swipe</div>
+            <img src="photo 2.png" class="hidden-content">
+        </div>
+    </div>
+
+
+    <div class="swipe-box">
+        <div class="swipe-area">
+            <div class="swipe-hint">👆 Swipe</div>
+            <img src="photo 3.jpg" class="hidden-content">
+        </div>
+    </div>
+
+
+    <div class="swipe-box">
+        <div class="swipe-area">
+            <div class="swipe-hint">👆 Swipe</div>
+            <img src="photo 4.jpg" class="hidden-content">
+        </div>
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
 </html>
