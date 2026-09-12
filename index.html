@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,84 +12,14 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-<style>
-
-#passwordScreen{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:25px;
-}
-
-#passwordScreen h1{
-    margin-bottom:15px;
-}
-
-#passwordScreen h2{
-    margin-bottom:15px;
-}
-
-#passwordInput{
-    padding:13px 18px;
-    border:none;
-    outline:none;
-    border-radius:25px;
-    font-size:17px;
-    text-align:center;
-}
-
-#passwordBtn{
-    margin-top:15px;
-    padding:13px 28px;
-    border:none;
-    border-radius:25px;
-    background:#ff4081;
-    color:white;
-    font-size:17px;
-    cursor:pointer;
-}
-
-#passwordError{
-    margin-top:10px;
-}
-
-</style>
-
 </head>
 
 <body>
 
-<!-- PASSWORD -->
-
-<div id="passwordScreen">
-
-    <h1>🔐 Secret Surprise 🔐</h1>
-
-    <h2>Enter Password ❤️</h2>
-
-    <input
-        type="password"
-        id="passwordInput"
-        placeholder="Enter Password"
-    >
-
-    <br>
-
-    <button id="passwordBtn">
-        Unlock 🎁
-    </button>
-
-    <p id="passwordError"></p>
-
-</div>
-
 
 <!-- LOADER -->
 
-<div id="loader" style="display:none;">
+<div id="loader">
 
     <h1>🎁 A Special Surprise 🎁</h1>
 
@@ -101,6 +32,7 @@
     </button>
 
 </div>
+
 
 
 <!-- MAIN -->
@@ -116,49 +48,228 @@
     </h2>
 
 
+    <!-- PHOTO 1 -->
+
     <div class="swipe-box">
+
         <div class="swipe-area">
-            <div class="swipe-hint">👆 Swipe</div>
-            <img src="IMG-20260308-WA0001.jpg" class="hidden-content">
+
+            <div class="swipe-hint">
+                👆 Swipe to Photo
+            </div>
+
+            <img
+                src="IMG-20260308-WA0001.jpg"
+                class="hidden-content"
+            >
+
         </div>
+
     </div>
 
 
+
+    <!-- PHOTO 2 -->
+
     <div class="swipe-box">
+
         <div class="swipe-area">
-            <div class="swipe-hint">👆 Swipe</div>
-            <img src="photo 1.png" class="hidden-content">
+
+            <div class="swipe-hint">
+                👆 Swipe to Photo
+            </div>
+
+            <img
+                src="photo 1.png"
+                class="hidden-content"
+            >
+
         </div>
+
     </div>
 
 
+
+    <!-- PHOTO 3 -->
+
     <div class="swipe-box">
+
         <div class="swipe-area">
-            <div class="swipe-hint">👆 Swipe</div>
-            <img src="photo 2.png" class="hidden-content">
+
+            <div class="swipe-hint">
+                👆 Swipe to Photo
+            </div>
+
+            <img
+                src="photo 2.png"
+                class="hidden-content"
+            >
+
         </div>
+
     </div>
 
 
+
+    <!-- PHOTO 4 -->
+
     <div class="swipe-box">
+
         <div class="swipe-area">
-            <div class="swipe-hint">👆 Swipe</div>
-            <img src="photo 3.jpg" class="hidden-content">
+
+            <div class="swipe-hint">
+                👆 Swipe to Photo
+            </div>
+
+            <img
+                src="photo 3.jpg"
+                class="hidden-content"
+            >
+
         </div>
+
     </div>
 
 
+
+    <!-- PHOTO 5 -->
+
     <div class="swipe-box">
+
         <div class="swipe-area">
-            <div class="swipe-hint">👆 Swipe</div>
-            <img src="photo 4.jpg" class="hidden-content">
+
+            <div class="swipe-hint">
+                👆 Swipe to Photo
+            </div>
+
+            <img
+                src="photo 4.jpg"
+                class="hidden-content"
+            >
+
         </div>
+
     </div>
+
+
+
+    <!-- VIDEO -->
+
+    <div class="swipe-box">
+
+        <div class="swipe-area">
+
+            <div class="swipe-hint">
+                👆 Swipe to Video
+            </div>
+
+            <video
+                controls
+                loop
+                class="hidden-content"
+            >
+
+                <source
+                    src="VN20260905_111408.mp4"
+                    type="video/mp4"
+                >
+
+            </video>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MESSAGE -->
+
+    <p class="msg">
+
+        Dear Ayushi ❤️
+        <br><br>
+
+        May your birthday be filled with happiness,
+        love, joy, success, beautiful memories
+        and endless smiles.
+
+        <br><br>
+
+        Stay Happy 😊
+        <br>
+
+        Stay Blessed 🌸
+
+        <br><br>
+
+        Happy Birthday 🎂
+
+    </p>
+
+
+
+    <!-- GIFT -->
+
+    <a href="gift.html">
+
+        <button id="giftBtn">
+            🎁 Open Gift 🎁
+        </button>
+
+    </a>
+
+
+
+    <!-- REPLY -->
+
+    <a
+        href="https://wa.me/919288056524?text=Hi%20Ayush%20❤️%20I%20saw%20your%20birthday%20surprise."
+        target="_blank"
+    >
+
+        <button id="giftBtn">
+            💬 Reply to Ayush ❤️
+        </button>
+
+    </a>
+
+
+
+    <!-- FOOTER -->
+
+    <h2>
+
+        🌹Made With ❤️
+
+        <br><br>
+
+        only
+
+        <br>
+
+        for you ♥️🌹
+
+    </h2>
 
 </div>
+
+
+
+<!-- MUSIC -->
+
+<audio id="music" loop>
+
+    <source
+        src="songe .mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
 
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
