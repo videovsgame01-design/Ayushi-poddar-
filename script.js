@@ -11,7 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const music = document.getElementById("music");
 
 
-    // Starting state
+    /* =========================
+       START
+    ========================= */
+
     if (passwordScreen) {
         passwordScreen.style.display = "flex";
     }
@@ -25,60 +28,102 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Password check
+    /* =========================
+       PASSWORD
+    ========================= */
+
     function unlockWebsite() {
 
-        const password = passwordInput.value.trim();
+        if (!passwordInput) return;
 
-        if (password === "5121314") {
+        if (passwordInput.value === "5121314") {
 
-            passwordError.textContent = "";
+            if (passwordError) {
+                passwordError.textContent = "";
+            }
 
-            passwordScreen.style.display = "none";
+            if (passwordScreen) {
+                passwordScreen.style.display = "none";
+            }
 
-            loader.style.display = "flex";
+            if (loader) {
+                loader.style.display = "flex";
+            }
 
         } else {
 
-            passwordError.textContent = "❌ Wrong Password ❤️";
+            if (passwordError) {
+                passwordError.textContent =
+                    "❌ Wrong Password ❤️";
+            }
 
             passwordInput.value = "";
-
             passwordInput.focus();
         }
     }
 
 
-    // Unlock button
-    passwordBtn.addEventListener("click", unlockWebsite);
+    if (passwordBtn) {
+        passwordBtn.addEventListener(
+            "click",
+            unlockWebsite
+        );
+    }
 
 
-    // Enter key
-    passwordInput.addEventListener("keydown", function (event) {
+    if (passwordInput) {
 
-        if (event.key === "Enter") {
-            unlockWebsite();
-        }
+        passwordInput.addEventListener(
+            "keydown",
+            function (event) {
 
-    });
+                if (event.key === "Enter") {
+                    unlockWebsite();
+                }
 
+            }
+        );
 
-    // Open Surprise
-    startBtn.addEventListener("click", function () {
-
-        loader.style.display = "none";
-
-        main.style.display = "block";
-
-        if (music) {
-            music.play().catch(function () {});
-        }
-
-    });
+    }
 
 
-    // Swipe photos
-    const boxes = document.querySelectorAll(".swipe-box");
+    /* =========================
+       OPEN SURPRISE
+    ========================= */
+
+    if (startBtn) {
+
+        startBtn.addEventListener(
+            "click",
+            function () {
+
+                if (loader) {
+                    loader.style.display = "none";
+                }
+
+                if (main) {
+                    main.style.display = "block";
+                }
+
+                if (music) {
+                    music.play().catch(
+                        function () {}
+                    );
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================
+       SWIPE PHOTOS
+    ========================= */
+
+    const boxes =
+        document.querySelectorAll(".swipe-box");
+
 
     boxes.forEach(function (box) {
 
@@ -86,33 +131,54 @@ document.addEventListener("DOMContentLoaded", function () {
         let startY = 0;
 
 
-        box.addEventListener("touchstart", function (event) {
+        box.addEventListener(
+            "touchstart",
+            function (event) {
 
-            startX = event.touches[0].clientX;
-            startY = event.touches[0].clientY;
+                startX =
+                    event.touches[0].clientX;
 
-        }, { passive: true });
+                startY =
+                    event.touches[0].clientY;
 
-
-        box.addEventListener("touchend", function (event) {
-
-            const endX = event.changedTouches[0].clientX;
-            const endY = event.changedTouches[0].clientY;
-
-            const differenceX = endX - startX;
-            const differenceY = endY - startY;
+            },
+            { passive: true }
+        );
 
 
-            if (
-                Math.abs(differenceX) > 50 &&
-                Math.abs(differenceX) > Math.abs(differenceY)
-            ) {
+        box.addEventListener(
+            "touchend",
+            function (event) {
 
-                box.classList.add("revealed");
+                const endX =
+                    event.changedTouches[0].clientX;
 
-            }
+                const endY =
+                    event.changedTouches[0].clientY;
 
-        }, { passive: true });
+
+                const differenceX =
+                    endX - startX;
+
+                const differenceY =
+                    endY - startY;
+
+
+                if (
+                    Math.abs(differenceX) > 50 &&
+                    Math.abs(differenceX) >
+                    Math.abs(differenceY)
+                ) {
+
+                    box.classList.add(
+                        "revealed"
+                    );
+
+                }
+
+            },
+            { passive: true }
+        );
 
     });
 
