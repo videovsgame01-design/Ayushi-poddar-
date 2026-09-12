@@ -13,6 +13,52 @@ text-align:center;
 color:#fff;
 }
 
+/* PASSWORD */
+
+#passwordScreen{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+#passwordScreen h1{
+font-size:38px;
+margin:10px;
+}
+
+#passwordInput{
+padding:15px 20px;
+font-size:18px;
+border:none;
+border-radius:30px;
+outline:none;
+text-align:center;
+margin-top:20px;
+}
+
+#passwordBtn{
+padding:15px 35px;
+font-size:20px;
+border:none;
+border-radius:30px;
+background:#ff4081;
+color:white;
+cursor:pointer;
+margin-top:15px;
+transition:.3s;
+}
+
+#passwordBtn:hover{
+transform:scale(1.05);
+}
+
+#passwordError{
+margin-top:10px;
+font-size:16px;
+}
+
 /* LOADER */
 
 #loader{
@@ -184,6 +230,10 @@ margin-top:20px;
 /* MOBILE */
 
 @media(max-width:600px){
+
+#passwordScreen h1{
+font-size:30px;
+}
 
 #loader h1{
 font-size:30px;
